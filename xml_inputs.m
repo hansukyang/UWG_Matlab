@@ -7,6 +7,8 @@ function [new_climate_file] = xml_inputs(CL_EPW_PATH,CL_EPW,CL_XML_PATH,CL_XML,C
 % Packaged by J. Sullivan-Fedock
 % Modified by A. Nakano & Lingfu Zhang
 % latest modification 2014-10-29
+% 
+% Minor typo fixed ('Wa11' to 'Wall') - joeyang@mit.edu, Oct 14, 2015
 % -------------------------------------------------------------------------
 
 fullyScripted = 1;
@@ -1663,16 +1665,16 @@ refSite = ReferenceSite(xml_input.referenceSite.latitude,...
 
 if (typ1_distro > typ2_distro && typ1_distro > typ3_distro && typ1_distro > typ4_distro)
     dominantTypology = typology1;
-    dominantWall = wa111;
+    dominantWall = wall1;
 elseif (typ2_distro > typ1_distro && typ2_distro > typ3_distro && typ2_distro > typ4_distro)
     dominantTypology = typology2;
-    dominantWall = wa112;
+    dominantWall = wall2;
 elseif (typ3_distro > typ1_distro && typ3_distro > typ2_distro && typ3_distro > typ4_distro)
     dominantTypology = typology3;
-    dominantWall = wa113;
+    dominantWall = wall3;
 elseif (typ4_distro > typ1_distro && typ4_distro > typ2_distro && typ4_distro > typ3_distro)
     dominantTypology = typology4;
-    dominantWall = wa114;
+    dominantWall = wall4;
 else
     dominantTypology = typology1;
     dominantWall = wall1;
