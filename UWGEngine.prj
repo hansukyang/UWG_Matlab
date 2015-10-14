@@ -1,0 +1,149 @@
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration build-checksum="3625157164" file="C:\Users\anakano\Dropbox\Research\UWG\UWG_Matlab\UWGEngine.prj" location="C:\Users\anakano\Dropbox\Research\UWG\UWG_Matlab" name="UWGEngine" preferred-package-location="C:\Users\anakano\Dropbox\Research\UWG\UWG_Matlab\UWGEngine\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>UWGEngine</param.appname>
+    <param.icon>${PROJECT_ROOT}\UWGEngine_resources\icon.ico</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\UWGEngine_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\UWGEngine_resources\icon_32.png</file>
+      <file>${PROJECT_ROOT}\UWGEngine_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\UWGEngine_resources\icon_16.png</file>
+    </param.icons>
+    <param.version>3.0</param.version>
+    <param.authnamewatermark>Aiko Nakano</param.authnamewatermark>
+    <param.email />
+    <param.company>MIT</param.company>
+    <param.summary>Urban Weather Generator estimates the hourly urban canopy air temperature and humidity using weather data from a rural weather station.</param.summary>
+    <param.description>It takes a rural epw file and the *.xml input file, which describes your urban canyon. The output is a morphed weather file [epw] that captures urban heat island effect and is compatible with many building performance simulation programs.</param.description>
+    <param.screenshot>C:\Users\anakano\Documents\Research\Urban-Weather-Generator\UWG_standalone_20150119\UWGNew\Images\CENSAM Poster_diagrams2_3-21.png</param.screenshot>
+    <param.guid />
+    <param.net.saved.interface />
+    <param.installpath.string>\Urban Weather Generator\</param.installpath.string>
+    <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
+    <param.logo />
+    <param.install.notes />
+    <param.intermediate>${PROJECT_ROOT}\UWGEngine\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\UWGEngine\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\UWGEngine\for_redistribution</param.output>
+    <param.enable.clean.build>false</param.enable.clean.build>
+    <param.user.defined.mcr.options />
+    <param.embed.ctf>true</param.embed.ctf>
+    <param.target.type>subtarget.standalone</param.target.type>
+    <param.support.packages />
+    <param.required.mcr.products>
+      <item>35000</item>
+      <item>35010</item>
+    </param.required.mcr.products>
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>UWGEngine</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.windows.command.prompt>true</param.windows.command.prompt>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <unset>
+      <param.email />
+      <param.guid />
+      <param.net.saved.interface />
+      <param.installpath.combo />
+      <param.logo />
+      <param.intermediate />
+      <param.files.only />
+      <param.output />
+      <param.enable.clean.build />
+      <param.user.defined.mcr.options />
+      <param.embed.ctf />
+      <param.target.type />
+      <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
+      <param.no.mcr />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\xml_inputs.m</file>
+    </fileset.main>
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\Autosize.m</file>
+      <file>${PROJECT_ROOT}\Building.m</file>
+      <file>${PROJECT_ROOT}\coolCap.txt</file>
+      <file>${PROJECT_ROOT}\Density.m</file>
+      <file>${PROJECT_ROOT}\DiffusionCoefficient.m</file>
+      <file>${PROJECT_ROOT}\DiffusionEquation.m</file>
+      <file>${PROJECT_ROOT}\DissipationBougeault.m</file>
+      <file>${PROJECT_ROOT}\Element.m</file>
+      <file>${PROJECT_ROOT}\Forcing.m</file>
+      <file>${PROJECT_ROOT}\HumFromRHumTemp.m</file>
+      <file>${PROJECT_ROOT}\InfraCalcs.m</file>
+      <file>${PROJECT_ROOT}\InfraCalcsAir.m</file>
+      <file>${PROJECT_ROOT}\Invert.m</file>
+      <file>${PROJECT_ROOT}\LengthBougeault.m</file>
+      <file>${PROJECT_ROOT}\Material.m</file>
+      <file>${PROJECT_ROOT}\Param.m</file>
+      <file>${PROJECT_ROOT}\PriorityIndex.m</file>
+      <file>${PROJECT_ROOT}\progressbar.m</file>
+      <file>${PROJECT_ROOT}\psat.m</file>
+      <file>${PROJECT_ROOT}\Psychrometrics.m</file>
+      <file>${PROJECT_ROOT}\qsat.m</file>
+      <file>${PROJECT_ROOT}\ReferenceSite.m</file>
+      <file>${PROJECT_ROOT}\SimParam.m</file>
+      <file>${PROJECT_ROOT}\SkyModel.m</file>
+      <file>${PROJECT_ROOT}\SolarAngles.m</file>
+      <file>${PROJECT_ROOT}\SolarCalcs.m</file>
+      <file>${PROJECT_ROOT}\SolarCalcsAutosize.m</file>
+      <file>${PROJECT_ROOT}\TransientConduction.m</file>
+      <file>${PROJECT_ROOT}\UblAbs.m</file>
+      <file>${PROJECT_ROOT}\UblEmis.m</file>
+      <file>${PROJECT_ROOT}\UblVars.m</file>
+      <file>${PROJECT_ROOT}\UrbanArea.m</file>
+      <file>${PROJECT_ROOT}\UrbanBoundaryLayerModel.m</file>
+      <file>${PROJECT_ROOT}\UrbanConf.m</file>
+      <file>${PROJECT_ROOT}\UrbanUsage.m</file>
+      <file>${PROJECT_ROOT}\UrbFlux.m</file>
+      <file>${PROJECT_ROOT}\UrbFluxAutosize.m</file>
+      <file>${PROJECT_ROOT}\UrbThermal.m</file>
+      <file>${PROJECT_ROOT}\Weather.m</file>
+      <file>${PROJECT_ROOT}\xml_read.m</file>
+      <file>${PROJECT_ROOT}\xml_write.m</file>
+      <file>${PROJECT_ROOT}\z_meso.txt</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}\UWGEngine\for_testing" name="readme.txt" optional="true">C:\Users\anakano\Dropbox\Research\UWG\UWG_Matlab\UWGEngine\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\UWGEngine\for_testing" name="splash.png" optional="false">C:\Users\anakano\Dropbox\Research\UWG\UWG_Matlab\UWGEngine\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\UWGEngine\for_testing" name="UWGEngine.exe" optional="false">C:\Users\anakano\Dropbox\Research\UWG\UWG_Matlab\UWGEngine\for_testing\UWGEngine.exe</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files (x86)\MATLAB\R2015a</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.1</osver>
+      <os32>true</os32>
+      <os64>false</os64>
+      <arch>win32</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
