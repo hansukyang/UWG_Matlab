@@ -23,3 +23,4 @@ Failed to add the icon, C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resource
 Creating the bundle...
 Web based installer created at C:\Sim\UWG_Matlab\UWGEngine\for_redistribution\UWGEngine.exe.
 Packaging complete.
+Elapsed packaging time was: 55 seconds.

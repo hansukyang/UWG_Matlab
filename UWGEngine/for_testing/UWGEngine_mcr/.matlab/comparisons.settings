@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings name="comparisons" visible="true" xmlns="urn:mathworks.matlab.settings" xsi:schemaLocation="urn:mathworks.matlab.settings settings.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <settings name="colors" visible="true">
+        <settings name="9b0630bb-e728-44b6-aee9-70066572951a" visible="true">
+            <key name="profileName" visible="true">
+                <string>
+                    <value><![CDATA[Default]]></value>
+                </string>
+            </key>
+            <settings name="current" visible="true">
+                <key name="LeftDifferenceColor" visible="true">
+                    <int32 minArraySize="0" maxArraySize="3">
+                        <value>221</value>
+                        <value>255</value>
+                        <value>221</value>
+                    </int32>
+                </key>
+                <key name="MergedColor" visible="true">
+                    <int32 minArraySize="0" maxArraySize="3">
+                        <value>192</value>
+                        <value>192</value>
+                        <value>192</value>
+                    </int32>
+                </key>
+                <key name="ModifiedContentColor" visible="true">
+                    <int32 minArraySize="0" maxArraySize="3">
+                        <value>255</value>
+                        <value>180</value>
+                        <value>180</value>
+                    </int32>
+                </key>
+                <key name="ModifiedLineColor" visible="true">
+                    <int32 minArraySize="0" maxArraySize="3">
+                        <value>255</value>
+                        <value>221</value>
+                        <value>221</value>
+                    </int32>
+                </key>
+                <key name="RightDifferenceColor" visible="true">
+                    <int32 minArraySize="0" maxArraySize="3">
+                        <value>221</value>
+                        <value>255</value>
+                        <value>221</value>
+                    </int32>
+                </key>
+            </settings>
+            <settings name="original" visible="true">
+                <key name="LeftDifferenceColor" visible="true">
+                    <int32 minArraySize="0" maxArraySize="3">
+                        <value>221</value>
+                        <value>255</value>
+                        <value>221</value>
+                    </int32>
+                </key>
+                <key name="MergedColor" visible="true">
+                    <int32 minArraySize="0" maxArraySize="3">
+                        <value>192</value>
+                        <value>192</value>
+                        <value>192</value>
+                    </int32>
+                </key>
+                <key name="ModifiedContentColor" visible="true">
+                    <int32 minArraySize="0" maxArraySize="3">
+                        <value>255</value>
+                        <value>180</value>
+                        <value>180</value>
+                    </int32>
+                </key>
+                <key name="ModifiedLineColor" visible="true">
+                    <int32 minArraySize="0" maxArraySize="3">
+                        <value>255</value>
+                        <value>221</value>
+                        <value>221</value>
+                    </int32>
+                </key>
+                <key name="RightDifferenceColor" visible="true">
+                    <int32 minArraySize="0" maxArraySize="3">
+                        <value>221</value>
+                        <value>255</value>
+                        <value>221</value>
+                    </int32>
+                </key>
+            </settings>
+        </settings>
+        <settings name="currentProfile" visible="true">
+            <key name="lastChosen" visible="true">
+                <string>
+                    <value><![CDATA[Default]]></value>
+                </string>
+            </key>
+        </settings>
+    </settings>
+</settings>
