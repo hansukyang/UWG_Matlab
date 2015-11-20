@@ -1,26 +1,19 @@
-mcc -C -o UWGEngine -W WinMain:UWGEngine -T link:exe -d C:\Sim\UWG_Matlab\UWGEngine\for_testing -v C:\Sim\UWG_Matlab\xml_inputs.m -a C:\Sim\UWG_Matlab\Autosize.m -a C:\Sim\UWG_Matlab\Building.m -a C:\Sim\UWG_Matlab\coolCap.txt -a C:\Sim\UWG_Matlab\Density.m -a C:\Sim\UWG_Matlab\DiffusionCoefficient.m -a C:\Sim\UWG_Matlab\DiffusionEquation.m -a C:\Sim\UWG_Matlab\DissipationBougeault.m -a C:\Sim\UWG_Matlab\Element.m -a C:\Sim\UWG_Matlab\Forcing.m -a C:\Sim\UWG_Matlab\HumFromRHumTemp.m -a C:\Sim\UWG_Matlab\InfraCalcs.m -a C:\Sim\UWG_Matlab\InfraCalcsAir.m -a C:\Sim\UWG_Matlab\Invert.m -a C:\Sim\UWG_Matlab\LengthBougeault.m -a C:\Sim\UWG_Matlab\Material.m -a C:\Sim\UWG_Matlab\Param.m -a C:\Sim\UWG_Matlab\PriorityIndex.m -a C:\Sim\UWG_Matlab\progressbar.m -a C:\Sim\UWG_Matlab\psat.m -a C:\Sim\UWG_Matlab\Psychrometrics.m -a C:\Sim\UWG_Matlab\qsat.m -a C:\Sim\UWG_Matlab\ReferenceSite.m -a C:\Sim\UWG_Matlab\SimParam.m -a C:\Sim\UWG_Matlab\SkyModel.m -a C:\Sim\UWG_Matlab\SolarAngles.m -a C:\Sim\UWG_Matlab\SolarCalcs.m -a C:\Sim\UWG_Matlab\SolarCalcsAutosize.m -a C:\Sim\UWG_Matlab\TransientConduction.m -a C:\Sim\UWG_Matlab\UblAbs.m -a C:\Sim\UWG_Matlab\UblEmis.m -a C:\Sim\UWG_Matlab\UblVars.m -a C:\Sim\UWG_Matlab\UrbanArea.m -a C:\Sim\UWG_Matlab\UrbanBoundaryLayerModel.m -a C:\Sim\UWG_Matlab\UrbanConf.m -a C:\Sim\UWG_Matlab\UrbanUsage.m -a C:\Sim\UWG_Matlab\UrbFlux.m -a C:\Sim\UWG_Matlab\UrbFluxAutosize.m -a C:\Sim\UWG_Matlab\UrbThermal.m -a C:\Sim\UWG_Matlab\Weather.m -a C:\Sim\UWG_Matlab\xml_read.m -a C:\Sim\UWG_Matlab\xml_write.m -a C:\Sim\UWG_Matlab\z_meso.txt 
+mcc -C -o UWG -W WinMain:UWG -T link:exe -d C:\Sim\UWG\for_testing -v C:\Sim\UWG_Matlab\xml_new.m 
 Compiler version: 6.1 (R2015b)
 
 Dependency analysis by REQUIREMENTS.
 
 [Warning: Adding path "C:\Sim\UWG_Matlab" to Compiler path instance.] 
 [] 
-Parsing file "C:\Sim\UWG_Matlab\xml_inputs.m"
+Parsing file "C:\Sim\UWG_Matlab\xml_new.m"
 	(Referenced from: "Compiler Command Line").
 Deleting 0 temporary MEX authorization files.
-Generating file "C:\Sim\UWG_Matlab\UWGEngine\for_testing\readme.txt".
+Generating file "C:\Sim\UWG\for_testing\readme.txt".
 Packaging...
-Adding custom icon C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico to C:\Sim\UWG_Matlab\UWGEngine\for_testing\UWGEngine.exe.
-Failed to add the icon, C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico, in the application.
-Update resource failed: 110
-Attempting to embed the default icon C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico.
-Failed to add the icon, C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico, in the application.
-Update resource failed: 110
-Attempting to embed the CTF archive into the application C:\Sim\UWG_Matlab\UWGEngine\for_testing\UWGEngine.exe.
-Failed to embed the CTF archive. Will leave the CTF archive along with the application.
-C:\Sim\UWG_Matlab\UWGEngine\for_testing\UWGEngine.exe (The process cannot access the file because it is being used by another process)
-Failed to add the icon, C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico, in the application.
+Adding custom icon C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico to C:\Sim\UWG\for_testing\UWG.exe.
+Attempting to embed the CTF archive into the application C:\Sim\UWG\for_testing\UWG.exe.
+Finished embedding CTF archive. Deleting the external CTF archive.
 Creating the bundle...
-Web based installer created at C:\Sim\UWG_Matlab\UWGEngine\for_redistribution\UWGEngine.exe.
+Web based installer created at C:\Sim\UWG\for_redistribution\MyAppInstaller_web.exe.
 Packaging complete.
-Elapsed packaging time was: 55 seconds.
+Elapsed packaging time was: 48 seconds.
