@@ -112,10 +112,15 @@
                 <string minArraySize="0" maxArraySize="500">
                     <value><![CDATA[C:\Sim\UWG_Matlab]]></value>
                     <value><![CDATA[C:\Sim]]></value>
-                    <value><![CDATA[C:\Users\Joseph\AppData\Local\Microsoft\Windows\Temporary Internet Files\Content.Outlook\HP14LNXE]]></value>
+                    <value><![CDATA[C:\Sim\UWG]]></value>
+                    <value><![CDATA[C:\Sim\UWG_Matlab\output]]></value>
                     <value><![CDATA[C:\Sim\UHI]]></value>
-                    <value><![CDATA[C:\Sim\UHI\outputs]]></value>
+                    <value><![CDATA[C:\Sim\UWG_Matlab\data]]></value>
                     <value><![CDATA[C:\Sim\UHI\data]]></value>
+                    <value><![CDATA[C:\Sim\UHI\outputs]]></value>
+                    <value><![CDATA[C:\Sim\UHI\outputs_cap]]></value>
+                    <value><![CDATA[C:\Sim\UHI\outputs_bub]]></value>
+                    <value><![CDATA[C:\Users\Joseph\AppData\Local\Microsoft\Windows\Temporary Internet Files\Content.Outlook\HP14LNXE]]></value>
                     <value><![CDATA[C:\Sim\UHI\data\ARE_Abu.Dhabi.412170_IWEC]]></value>
                     <value><![CDATA[c:]]></value>
                     <value><![CDATA[c:\Sim\uwg2.2_27Oct13\outputs]]></value>
@@ -168,8 +173,8 @@
                 <key name="ColumnSizes">
                     <string minArraySize="0" maxArraySize="100000">
                         <value><![CDATA[40]]></value>
-                        <value><![CDATA[160]]></value>
-                        <value><![CDATA[39]]></value>
+                        <value><![CDATA[155]]></value>
+                        <value><![CDATA[46]]></value>
                         <value><![CDATA[0]]></value>
                         <value><![CDATA[0]]></value>
                         <value><![CDATA[0]]></value>

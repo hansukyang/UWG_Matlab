@@ -1,0 +1,71 @@
+Rural weather file selected: C:\Sim\UWG_Matlab\data\sample.epw
+Urban Parameter file selected: C:\Sim\UWG_Matlab\data\BackBayStation_26.xml
+Save location selected: C:\Sim\UWG_Matlab\output\.epw
+  Building with properties:
+
+          floorHeight: 3
+              intHeat: 4.7369
+         intHeatNight: 4.7369
+           intHeatDay: 16.6907
+          intHeatFRad: 0.5405
+          intHeatFLat: 0.0617
+                infil: 0.1601
+                 vent: 0.4177
+         glazingRatio: 0.7000
+               uValue: 3.1230
+                 shgc: 0.4000
+             condType: 'air'
+                  cop: 3.7000
+               fWaste: 0.5000
+      coolSetpointDay: 297.5667
+    coolSetpointNight: 299.1744
+      heatSetpointDay: 293.3166
+    heatSetpointNight: 290.1012
+              coolCap: 205
+              heatEff: 0.8000
+                 mSys: 0.0196
+           indoorTemp: 288.7500
+            indoorHum: 0.0120
+       sensCoolDemand: []
+       sensHeatDemand: []
+          dehumDemand: []
+          coolConsump: []
+          heatConsump: []
+            sensWaste: []
+             latWaste: []
+             fluxMass: []
+             fluxWall: []
+             fluxRoof: []
+
+===========================
+Autosize simulation: Urban Area C
+Period: month 7 from day 15 to day 20
+Autosize factor: 1.2
+Internal Heat Night 4.74 W m-2(fl), Internal Heat Day 16.69 W m-2(fl)
+Cooling Setpoint Day 297.57 K, Cooling Setpoint Night 299.17 K
+> Cooling capacity: 453.76 W m-2(bld)
+===========================
+===========================
+Autosize simulation: Urban Area C
+Period: month 7 from day 15 to day 20
+Autosize factor: 1.2
+Internal Heat Night 4.74 W m-2(fl), Internal Heat Day 16.69 W m-2(fl)
+Cooling Setpoint Day 297.57 K, Cooling Setpoint Night 299.17 K
+> Cooling capacity: 227.36 W m-2(bld)
+===========================
+===========================
+Autosize simulation: Urban Area C
+Period: month 7 from day 15 to day 20
+Autosize factor: 1.2
+Internal Heat Night 5.59 W m-2(fl), Internal Heat Day 24.71 W m-2(fl)
+Cooling Setpoint Day 298.15 K, Cooling Setpoint Night 299.15 K
+> Cooling capacity: 394.08 W m-2(bld)
+===========================
+===========================
+Autosize simulation: Urban Area C
+Period: month 7 from day 15 to day 20
+Autosize factor: 1.2
+Internal Heat Night 5.59 W m-2(fl), Internal Heat Day 24.71 W m-2(fl)
+Cooling Setpoint Day 298.15 K, Cooling Setpoint Night 299.15 K
+> Cooling capacity: 432.98 W m-2(bld)
+===========================

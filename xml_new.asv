@@ -8,8 +8,9 @@ function [new_climate_file] = xml_new(CL_EPW_PATH,CL_EPW,CL_XML_PATH,CL_XML,CL_R
     % Changes
     % 1. Minor typo fixed ('Wa11' to 'Wall')
     % 2. Shortened code and added a section to break up single material
-    % 3. Re-added section to break up thick layers (>5cm)
-    % 4. (TBD) Modify functionality to either read from XML or matlab file
+    % 3. Removed a section that breaks up a thick layer - will be re-added
+    %    along with the single layer break-up code
+    % 4. (TBD) Modify functionality to either read from XML or matlat file
     % =========================================================================
     
     % =========================================================================
@@ -142,7 +143,6 @@ function [new_climate_file] = xml_new(CL_EPW_PATH,CL_EPW,CL_XML_PATH,CL_XML,CL_R
 
     % Define Road Element
     roadMat = [];
-    newthickness = [];
     materials = xmlUArea.urbanRoad.materials;
     urbanRoad = xmlUArea.urbanRoad;
     k = xmlUArea.urbanRoad.materials.thermalConductivity;
@@ -150,20 +150,20 @@ function [new_climate_file] = xml_new(CL_EPW_PATH,CL_EPW,CL_XML_PATH,CL_XML,CL_R
     if numel(materials.thickness)>1
         for j = 1:numel(materials.thickness)
             % Break up each layer that's more than 5cm thick
-            if materials.thickness(j) > 0.05
+            if materials.thickness(i) > 0.05
                 nlayers = ceil(materials.thickness(i)/0.05);
                 for l = 1:nlayers
                     roadMat = [roadMat Material(k{j},Vhc{j})];
-                    newthickness = [newthickness materials.thickness(j)/nlayers];
+                    newthickness = [newthickness materials.thickness(i)/nlayers];
                 end
             else
-                roadMat = [roadMat Material(k{j},Vhc{j})];
-                newthickness = [newthickness materials.thickness(j)];
+                wallMat = [wallMat Material(k{j},Vhc{j})];
+                newthickness = [newthickness materials.thickness(i)];
             end
         end
     else
         % Divide single layer into two (UWG assumes at least 2 layers)
-        newthickness = [materials.thickness/2 materials.thickness/2];
+        materials.thickness = [materials.thickness/2 materials.thickness/2];
         roadMat = [Material(k,Vhc) Material(k,Vhc)];
     end
     road = Element(urbanRoad.albedo,urbanRoad.emissivity,newthickness,roadMat,...
@@ -171,7 +171,6 @@ function [new_climate_file] = xml_new(CL_EPW_PATH,CL_EPW,CL_XML_PATH,CL_XML,CL_R
 
     % Define Rural Element
     ruralMat = [];
-    newthickness = [];
     materials = xmlRSite.ruralRoad.materials;
     ruralRoad = xmlRSite.ruralRoad;
     k = xmlUArea.urbanRoad.materials.thermalConductivity;
@@ -179,26 +178,26 @@ function [new_climate_file] = xml_new(CL_EPW_PATH,CL_EPW,CL_XML_PATH,CL_XML,CL_R
     if numel(materials.thickness)>1
         for j = 1:numel(materials.thickness)
             % Break up each layer that's more than 5cm thick
-            if materials.thickness(j) > 0.05
-                nlayers = ceil(materials.thickness(j)/0.05);
+            if materials.thickness(i) > 0.05
+                nlayers = ceil(materials.thickness(i)/0.05);
                 for l = 1:nlayers
-                    ruralMat = [ruralMat Material(k{j},Vhc{j})];
-                    newthickness = [newthickness materials.thickness(j)/nlayers];
+                    roadMat = [roadMat Material(k{j},Vhc{j})];
+                    newthickness = [newthickness materials.thickness(i)/nlayers];
                 end
             else
-                ruralMat = [wallMat Material(k{j},Vhc{j})];
-                newthickness = [newthickness materials.thickness(j)];
+                wallMat = [wallMat Material(k{j},Vhc{j})];
+                newthickness = [newthickness materials.thickness(i)];
             end
         end
     else
-        newthickness = [materials.thickness/2 materials.thickness/2];    
+        materials.thickness = [materials.thickness/2 materials.thickness/2];    
         ruralMat = [Material(k,Vhc) Material(k,Vhc)];
     end
     rural = Element(ruralRoad.albedo,ruralRoad.emissivity,newthickness,...
         ruralMat,ruralRoad.vegetationCoverage,ruralRoad.initialTemperature + 273.15,ruralRoad.inclination);
 
     for i = 1:4
-        % Define Wall
+        % Define Wall (add feature to subdivide layer later)
         wallMat = [];
         newthickness = [];
         materials = xmlTyp(i).construction.wall.materials;
@@ -209,20 +208,20 @@ function [new_climate_file] = xml_new(CL_EPW_PATH,CL_EPW,CL_XML_PATH,CL_XML,CL_R
         if numel(materials.thickness) > 1
             for j = 1:numel(materials.thickness)
                 % Break up each layer that's more than 5cm thick
-                if materials.thickness(j) > 0.05
-                    nlayers = ceil(materials.thickness(j)/0.05);
+                if materials.thickness(i) > 0.05
+                    nlayers = ceil(materials.thickness(i)/0.05);
                     for l = 1:nlayers
-                        wallMat = [wallMat Material(k{j},Vhc{j})];
-                        newthickness = [newthickness materials.thickness(j)/nlayers];
+                        roadMat = [roadMat Material(k{j},Vhc{j})];
+                        newthickness = [newthickness materials.thickness(i)/nlayers];
                     end
                 else
                     wallMat = [wallMat Material(k{j},Vhc{j})];
-                    newthickness = [newthickness materials.thickness(j)];
+                    newthickness = [newthickness materials.thickness(i)];
                 end
             end
         else
-            newthickness = [materials.thickness/2 materials.thickness/2];
-            wallMat = [Material(k, Vhc) Material(k, Vhc)];
+            materials.thickness = [materials.thickness/2 materials.thickness/2];
+            wallMat = [Material(k, Vhc) Material(k, Vhc)]; ;
         end
         wall(i) = Element(xwall.albedo,xwall.emissivity,newthickness,wallMat,...
             xwall.vegetationCoverage,xwall.initialTemperature + 273.15,xwall.inclination);
@@ -238,19 +237,19 @@ function [new_climate_file] = xml_new(CL_EPW_PATH,CL_EPW,CL_XML_PATH,CL_XML,CL_R
         if numel(materials.thickness) > 1
             for j = 1:numel(materials.thickness)
                 % Break up each layer that's more than 5cm thick
-                if materials.thickness(j) > 0.05
-                    nlayers = ceil(materials.thickness(j)/0.05);
+                if materials.thickness(i) > 0.05
+                    nlayers = ceil(materials.thickness(i)/0.05);
                     for l = 1:nlayers
-                        roofMat = [roofMat Material(k{j},Vhc{j})];
-                        newthickness = [newthickness materials.thickness(j)/nlayers];
+                        roadMat = [roadMat Material(k{j},Vhc{j})];
+                        newthickness = [newthickness materials.thickness(i)/nlayers];
                     end
                 else
-                    roofMat = [roofMat Material(k{j},Vhc{j})];
-                    newthickness = [newthickness materials.thickness(j)];
+                    wallMat = [wallMat Material(k{j},Vhc{j})];
+                    newthickness = [newthickness materials.thickness(i)];
                 end
             end
         else
-            newthickness = [materials.thickness/2 materials.thickness/2];
+            materials.thickness = [materials.thickness/2 materials.thickness/2];
             roofMat = [Material(k,Vhc) Material(k,Vhc)];
         end
         roof(i) = Element(xroof.albedo,xroof.emissivity,newthickness,roofMat,...
@@ -267,19 +266,19 @@ function [new_climate_file] = xml_new(CL_EPW_PATH,CL_EPW,CL_XML_PATH,CL_XML,CL_R
         if numel(materials.thickness) > 1
             for j = 1:numel(materials.thickness)
                 % Break up each layer that's more than 5cm thick
-                if materials.thickness(j) > 0.05
-                    nlayers = ceil(materials.thickness(j)/0.05);
+                if materials.thickness(i) > 0.05
+                    nlayers = ceil(materials.thickness(i)/0.05);
                     for l = 1:nlayers
-                        massMat = [massMat Material(k{j},Vhc{j})];
-                        newthickness = [newthickness materials.thickness(j)/nlayers];
+                        roadMat = [roadMat Material(k{j},Vhc{j})];
+                        newthickness = [newthickness materials.thickness(i)/nlayers];
                     end
                 else
-                    massMat = [massMat Material(k{j},Vhc{j})];
-                    newthickness = [newthickness materials.thickness(j)];
+                    wallMat = [wallMat Material(k{j},Vhc{j})];
+                    newthickness = [newthickness materials.thickness(i)];
                 end
             end
         else
-            newthickness = [materials.thickness/2 materials.thickness/2];
+            materials.thickness = [materials.thickness/2 materials.thickness/2];
             massMat = [Material(k,Vhc) Material(k,Vhc)];
         end
         mass(i) = Element(xmass.albedo,xmass.emissivity,newthickness,massMat,...
@@ -330,8 +329,6 @@ function [new_climate_file] = xml_new(CL_EPW_PATH,CL_EPW,CL_XML_PATH,CL_XML,CL_R
         xmlUArea.nonBldgLatentAnthropogenicHeat,weather.staTemp(1),weather.staHum(1),...
         weather.staUmod(1),parameter,dominantTypology,dominantWall,road,rural); 
     ublVars = UblVars('C',xml_input.urbanArea.charLength,weather.staTemp(1),parameter.maxdx); 
-    
-    save ('UWGdump.mat');
 
     % =========================================================================
     % Section 6 - HVAC Autosizing (if needed)
@@ -447,6 +444,5 @@ function [new_climate_file] = xml_new(CL_EPW_PATH,CL_EPW,CL_XML_PATH,CL_XML,CL_R
     end
     disp(['New climate file generated: ',new_climate_file]);
 
-    save ('UWGdump.mat');
     fclose all;
 end
