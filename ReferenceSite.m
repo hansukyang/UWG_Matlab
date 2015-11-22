@@ -142,9 +142,6 @@ classdef ReferenceSite
                     (obj.z(obj.nzref)+obj.dz(obj.nzref)/2);
             end
         end
-        
-      
-        
     end
     
 end

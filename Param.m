@@ -4,45 +4,45 @@ classdef Param
     
     properties
         % system parameters
-        dayBLHeight; % daytime mixing height, orig = 700
-        nightBLHeight; % Sing: 80, Bub-Cap: 50, nighttime boundary-layer height (m); orig 80
-        refHeight;    % Reference height at which the vertical profile 
-                              % of potential temperature is vertical
-        tempHeight;      % Temperature measuremnt height at the weather station (m)
+        dayBLHeight;    % daytime mixing height, orig = 700
+        nightBLHeight;  % Sing: 80, Bub-Cap: 50, nighttime boundary-layer height (m); orig 80
+        refHeight;      % Reference height at which the vertical profile 
+                        %   of potential temperature is vertical
+        tempHeight;     % Temperature measuremnt height at the weather station (m)
         windHeight;     % Air velocity measuremnt height at the weather station (m)
         circCoeff;      % Wind scaling coefficient
         dayThreshold;   % heat flux threshold for daytime conditions (W m-2)
-        nightThreshold;  % heat flux threshold for nighttime conditions (W m-2)
+        nightThreshold; % heat flux threshold for nighttime conditions (W m-2)
         treeFLat;       % latent fraction of trees
         grassFLat;      % latent fraction of grass
-        vegAlbedo;     % albedo of vegetation
-        vegStart;         % begin month for vegetation participation
-        vegEnd;          % end month for vegetation participation
-        nightSetStart;   % begin hour for night thermal set point schedule
-        nightSetEnd;      % end hour for night thermal set point schedule
+        vegAlbedo;      % albedo of vegetation
+        vegStart;       % begin month for vegetation participation
+        vegEnd;         % end month for vegetation participation
+        nightSetStart;  % begin hour for night thermal set point schedule
+        nightSetEnd;    % end hour for night thermal set point schedule
         windMin;        % minimum wind speed (m s-1)
         windMax;        % maximum wind speed (m s-1)
-        wgmax;        % maximum film water depth on horizontal surfaces (m)
+        wgmax;          % maximum film water depth on horizontal surfaces (m)
         exCoeff;        % exchange velocity coefficient
         maxdx;          % maximum discretization length for the UBL model (m)
 % physical parameters
-        g;             % gravity
-        cp;           % heat capacity for air (constant pressure)
-        vk;            % von karman constant
-        r;             % gas constant
+        g;              % gravity
+        cp;             % heat capacity for air (constant pressure)
+        vk;             % von karman constant
+        r;              % gas constant
         rv;
-        lv;          % latent heat of evaporation
-        pi;     % pi
-        sigma ;    % Stefan Boltzmann constant
-        waterDens;     % water density
+        lv;             % latent heat of evaporation
+        pi;             % pi
+        sigma ;         % Stefan Boltzmann constant
+        waterDens;      % water density
         lvtt;
         tt;
         estt;
         cl;
         cpv;
-        b;           % Coefficients derived by Louis (1979)
+        b;              % Coefficients derived by Louis (1979)
         cm; 
-        colburn; % (Pr/Sc)^(2/3) for Colburn analogy in water evaporation
+        colburn;        % (Pr/Sc)^(2/3) for Colburn analogy in water evaporation
     end
 %         properties (Constant = true)% physical parameters
 %         g = 9.81;             % gravity
@@ -59,7 +59,7 @@ classdef Param
 %         estt = 611.14;
 %         cl = 4.218e3;
 %         cpv = 1846.1;
-%         b   = 9.4;           % Coefficients derived by Louis (1979)
+%         b   = 9.4;            % Coefficients derived by Louis (1979)
 %         cm  = 7.4; 
 %         colburn = (0.713/0.621)^(2./3.); % (Pr/Sc)^(2/3) for Colburn analogy in water evaporation
 %     end

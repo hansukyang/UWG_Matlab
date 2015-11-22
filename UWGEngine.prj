@@ -1,22 +1,17 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="1087361872" file="C:\Sim\UWG_Matlab\UWGEngine.prj" location="C:\Sim\UWG_Matlab" name="UWGEngine" preferred-package-location="C:\Sim\UWG_Matlab\UWGEngine\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="3626136164" file="C:\Sim\UWG_Matlab\UWGEngine.prj" location="C:\Sim\UWG_Matlab" name="UWGEngine" preferred-package-location="C:\Sim\UWG_Matlab\UWGEngine\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>UWGEngine</param.appname>
-    <param.icon>${PROJECT_ROOT}\UWGEngine_resources\icon.ico</param.icon>
-    <param.icons>
-      <file>${PROJECT_ROOT}\UWGEngine_resources\icon_48.png</file>
-      <file>${PROJECT_ROOT}\UWGEngine_resources\icon_32.png</file>
-      <file>${PROJECT_ROOT}\UWGEngine_resources\icon_24.png</file>
-      <file>${PROJECT_ROOT}\UWGEngine_resources\icon_16.png</file>
-    </param.icons>
-    <param.version>3.01</param.version>
+    <param.icon />
+    <param.icons />
+    <param.version>2.11</param.version>
     <param.authnamewatermark>Joseph Yang</param.authnamewatermark>
     <param.email>joeyang@mit.edu</param.email>
     <param.company>MIT</param.company>
-    <param.summary>Urban Weather Generator estimates the hourly urban canopy air temperature and humidity using weather data from a rural weather station.</param.summary>
-    <param.description>It takes a rural epw file and the *.xml input file, which describes your urban canyon. The output is a morphed weather file [epw] that captures urban heat island effect and is compatible with many building performance simulation programs.</param.description>
+    <param.summary>Re-updated version for testing</param.summary>
+    <param.description>Re-compiled with script specified as function</param.description>
     <param.screenshot>${PROJECT_ROOT}\uwg_icon.png</param.screenshot>
     <param.guid />
-    <param.installpath.string>\Urban Weather Generator\</param.installpath.string>
+    <param.installpath.string>\MIT\UWGEngine\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
     <param.logo />
     <param.install.notes />
@@ -36,14 +31,17 @@
     <param.web.mcr>true</param.web.mcr>
     <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
-    <param.web.mcr.name>UWGEngine</param.web.mcr.name>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
     <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
     <param.windows.command.prompt>true</param.windows.command.prompt>
     <param.create.log>false</param.create.log>
     <param.log.file />
     <unset>
+      <param.icon />
+      <param.icons />
       <param.guid />
+      <param.installpath.string />
       <param.installpath.combo />
       <param.logo />
       <param.target.install.notes />
@@ -58,6 +56,7 @@
       <param.web.mcr />
       <param.package.mcr />
       <param.no.mcr />
+      <param.web.mcr.name />
       <param.package.mcr.name />
       <param.no.mcr.name />
       <param.windows.command.prompt />
@@ -65,12 +64,13 @@
       <param.log.file />
     </unset>
     <fileset.main>
-      <file>${PROJECT_ROOT}\xml_inputs.m</file>
+      <file>${PROJECT_ROOT}\xml_new.m</file>
     </fileset.main>
-    <fileset.resources>
+    <fileset.resources />
+    <fileset.package />
+    <fileset.depfun>
       <file>${PROJECT_ROOT}\Autosize.m</file>
       <file>${PROJECT_ROOT}\Building.m</file>
-      <file>${PROJECT_ROOT}\coolCap.txt</file>
       <file>${PROJECT_ROOT}\Density.m</file>
       <file>${PROJECT_ROOT}\DiffusionCoefficient.m</file>
       <file>${PROJECT_ROOT}\DiffusionEquation.m</file>
@@ -91,7 +91,6 @@
       <file>${PROJECT_ROOT}\qsat.m</file>
       <file>${PROJECT_ROOT}\ReferenceSite.m</file>
       <file>${PROJECT_ROOT}\SimParam.m</file>
-      <file>${PROJECT_ROOT}\SkyModel.m</file>
       <file>${PROJECT_ROOT}\SolarAngles.m</file>
       <file>${PROJECT_ROOT}\SolarCalcs.m</file>
       <file>${PROJECT_ROOT}\SolarCalcsAutosize.m</file>
@@ -108,11 +107,7 @@
       <file>${PROJECT_ROOT}\UrbThermal.m</file>
       <file>${PROJECT_ROOT}\Weather.m</file>
       <file>${PROJECT_ROOT}\xml_read.m</file>
-      <file>${PROJECT_ROOT}\xml_write.m</file>
-      <file>${PROJECT_ROOT}\z_meso.txt</file>
-    </fileset.resources>
-    <fileset.package />
-    <fileset.depfun />
+    </fileset.depfun>
     <build-deliverables>
       <file location="${PROJECT_ROOT}\UWGEngine\for_testing" name="UWGEngine.exe" optional="false">C:\Sim\UWG_Matlab\UWGEngine\for_testing\UWGEngine.exe</file>
       <file location="${PROJECT_ROOT}\UWGEngine\for_testing" name="splash.png" optional="false">C:\Sim\UWG_Matlab\UWGEngine\for_testing\splash.png</file>

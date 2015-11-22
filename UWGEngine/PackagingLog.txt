@@ -1,4 +1,4 @@
-mcc -C -o UWG -W WinMain:UWG -T link:exe -d C:\Sim\UWG\for_testing -v C:\Sim\UWG_Matlab\xml_new.m 
+mcc -C -o UWGEngine -W WinMain:UWGEngine -T link:exe -d C:\Sim\UWG_Matlab\UWGEngine\for_testing -v C:\Sim\UWG_Matlab\xml_new.m 
 Compiler version: 6.1 (R2015b)
 
 Dependency analysis by REQUIREMENTS.
@@ -8,12 +8,12 @@ Dependency analysis by REQUIREMENTS.
 Parsing file "C:\Sim\UWG_Matlab\xml_new.m"
 	(Referenced from: "Compiler Command Line").
 Deleting 0 temporary MEX authorization files.
-Generating file "C:\Sim\UWG\for_testing\readme.txt".
+Generating file "C:\Sim\UWG_Matlab\UWGEngine\for_testing\readme.txt".
 Packaging...
-Adding custom icon C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico to C:\Sim\UWG\for_testing\UWG.exe.
-Attempting to embed the CTF archive into the application C:\Sim\UWG\for_testing\UWG.exe.
+Adding custom icon C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico to C:\Sim\UWG_Matlab\UWGEngine\for_testing\UWGEngine.exe.
+Attempting to embed the CTF archive into the application C:\Sim\UWG_Matlab\UWGEngine\for_testing\UWGEngine.exe.
 Finished embedding CTF archive. Deleting the external CTF archive.
 Creating the bundle...
-Web based installer created at C:\Sim\UWG\for_redistribution\MyAppInstaller_web.exe.
+Web based installer created at C:\Sim\UWG_Matlab\UWGEngine\for_redistribution\MyAppInstaller_web.exe.
 Packaging complete.
-Elapsed packaging time was: 48 seconds.
+Elapsed packaging time was: 1 minutes and 2 seconds.
