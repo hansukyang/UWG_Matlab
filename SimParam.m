@@ -58,8 +58,6 @@ classdef SimParam
                 end
               end
         end
-                
     end
-    
 end
 

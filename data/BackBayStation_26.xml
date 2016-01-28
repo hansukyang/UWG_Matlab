@@ -477,6 +477,6 @@
     <exCoeff>0.3</exCoeff>
     <simuStartMonth>1</simuStartMonth>
     <simuStartDay>1</simuStartDay>
-    <simuDuration>365</simuDuration>
+    <simuDuration>7</simuDuration>
   </parameter>
 </xml_input>

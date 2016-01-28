@@ -18,7 +18,6 @@ classdef Element
      end
         
      methods
-         
         function obj = Element(albedo,emissivity,layerThickness,...
                 layerMaterial,vegCoverage,initialTemp,horizontal)
             % class constructor
@@ -47,7 +46,7 @@ classdef Element
             end
         end
         
-        function obj = SurfFlux( obj,forc,parameter,simParam,humRef,tempRef,...
+        function obj = SurfFlux(obj,forc,parameter,simParam,humRef,tempRef,...
                 windRef,boundCond,intFlux)
             % air density
             dens = Density(tempRef,humRef,forc.pres);
@@ -95,10 +94,7 @@ classdef Element
             % transient heat diffusion equation
             obj.layerTemp = TransientConduction(obj.layerTemp,...
                 simParam.dt,obj.layerVolHeat,obj.layerThermalCond,...
-                obj.layerThickness,flux,boundCond,forc.deepTemp,intFlux);
-            
+                obj.layerThickness,flux,boundCond,forc.deepTemp,intFlux); 
         end
-     
-                
      end
 end

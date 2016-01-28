@@ -1,4 +1,8 @@
 function mat = Process(xmlmat)
+    % Function added by Joseph Yang
+    % This function takes in the material definition from XML and creates 
+    % the material class of Element type, to simplify the original script.
+
     mat = [];
     materials = xmlmat;
     k = xmlmat.thermalConductivity;

@@ -1,19 +1,22 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="2672960694" file="C:\Sim\UWG_Matlab\UWGEngine.prj" location="C:\Sim\UWG_Matlab" name="UWGEngine" preferred-package-location="C:\Sim\UWG_Matlab\UWGEngine\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="1596713369" file="C:\Sim\UWG_Matlab\UWGEngine.prj" location="C:\Sim\UWG_Matlab" name="UWGEngine" preferred-package-location="C:\Sim\UWG_Matlab\UWGEngine\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>UWGEngine</param.appname>
     <param.icon />
     <param.icons />
-    <param.version>2.12</param.version>
+    <param.version>2.2</param.version>
     <param.authnamewatermark>Joseph Yang</param.authnamewatermark>
     <param.email>joeyang@mit.edu</param.email>
     <param.company>MIT</param.company>
-    <param.summary>Breaking up of layers re-added</param.summary>
-    <param.description>Breaking up of layers re-added. Layers that are more than 5cm are split into smaller layers.</param.description>
+    <param.summary>Latest update</param.summary>
+    <param.description>Added the following functions:
+- ground temperature read in from EPW file
+- TMY2 filetype checked
+- EPW weather data update fixed</param.description>
     <param.screenshot>${PROJECT_ROOT}\uwg_icon.png</param.screenshot>
     <param.guid />
     <param.installpath.string>\MIT\UWGEngine\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
-    <param.logo>${PROJECT_ROOT}\uwg_icon.png</param.logo>
+    <param.logo />
     <param.install.notes />
     <param.target.install.notes />
     <param.intermediate>${PROJECT_ROOT}\UWGEngine\for_testing</param.intermediate>
@@ -35,8 +38,8 @@
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
     <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
     <param.windows.command.prompt>true</param.windows.command.prompt>
-    <param.create.log>true</param.create.log>
-    <param.log.file>UWGEngine.log</param.log.file>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
     <unset>
       <param.icon />
       <param.icons />
@@ -46,6 +49,7 @@
       <param.guid />
       <param.installpath.string />
       <param.installpath.combo />
+      <param.logo />
       <param.target.install.notes />
       <param.intermediate />
       <param.files.only />
@@ -62,17 +66,20 @@
       <param.package.mcr.name />
       <param.no.mcr.name />
       <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
     </unset>
     <fileset.main>
       <file>${PROJECT_ROOT}\xml_new.m</file>
     </fileset.main>
-    <fileset.resources>
-      <file>${PROJECT_ROOT}\coolCap.txt</file>
+    <fileset.resources />
+    <fileset.package>
+      <file>${PROJECT_ROOT}\data\coolCap.txt</file>
       <file>${PROJECT_ROOT}\z_meso.txt</file>
-    </fileset.resources>
-    <fileset.package />
+    </fileset.package>
     <fileset.depfun>
       <file>${PROJECT_ROOT}\Autosize.m</file>
+      <file>${PROJECT_ROOT}\Block.m</file>
       <file>${PROJECT_ROOT}\Building.m</file>
       <file>${PROJECT_ROOT}\Density.m</file>
       <file>${PROJECT_ROOT}\DiffusionCoefficient.m</file>
@@ -88,6 +95,7 @@
       <file>${PROJECT_ROOT}\Material.m</file>
       <file>${PROJECT_ROOT}\Param.m</file>
       <file>${PROJECT_ROOT}\PriorityIndex.m</file>
+      <file>${PROJECT_ROOT}\procMat.m</file>
       <file>${PROJECT_ROOT}\progressbar.m</file>
       <file>${PROJECT_ROOT}\psat.m</file>
       <file>${PROJECT_ROOT}\Psychrometrics.m</file>

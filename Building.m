@@ -1,41 +1,40 @@
 classdef Building
-    %HVAC Summary of this class goes here
-    %   Detailed explanation goes here
+    %   Building building class of specified building characteristics.
     
     properties
-        floorHeight;     % floor height (m)
-        intHeat;         % timestep internal heat gains (W m-2 bld)
-        intHeatNight;    % nighttime internal heat gains (W m-2 floor)
-        intHeatDay;      % daytime internal heat gains (W m-2 floor)
-        intHeatFRad;     % radiant fraction of internal gains
-        intHeatFLat;     % latent fraction of internal gains
-        infil;           % Infiltration (ACH)
-        vent;            % Ventilation (ACH)
-        glazingRatio;    % glazing ratio
-        uValue;          % window U-value (W m-2 K-1) (including film coeff)
-        shgc;            % window SHGC
-        condType;        % cooling condensation system type {'AIR', 'WATER'}
-        cop;             % COP of the cooling system
-        fWaste;          % fraction of waste heat released into the canyon
-        coolSetpointDay;  % daytime indoor cooling set-point (K)
-        coolSetpointNight;% nighttime indoor cooling set-point (K)
-        heatSetpointDay;  % daytime indoor heating set-point (K)
-        heatSetpointNight;% nighttime indoor heating set-point (K)
-        coolCap;         % rated cooling system capacity (W m-2)
-        heatEff;         % heating system efficiency (-)
-        mSys;            % HVAC supply mass flowrate (kg s-1 m-2)
-        indoorTemp;      % indoor air temperature (K)
-        indoorHum;       % indoor specific humidity (kg m-3)
-        sensCoolDemand;  % building sensible cooling demand (W m-2)
-        sensHeatDemand;  % building sensible heating demand (W m-2)
-        dehumDemand;     % dehumidification energy (W m-2)
-        coolConsump;     % cooling energy consumption (W m-2)
-        heatConsump;     % heating energy consumption (W m-2)
-        sensWaste;       % sensible waste heat (W m-2)
-        latWaste;        % lat waste heat (W m-2)
-        fluxMass;        % mass surface heat flux (W m-2)
-        fluxWall;        % wall surface heat flux (W m-2)
-        fluxRoof;        % roof surface heat flux (W m-2)
+        floorHeight;        % floor height (m)
+        intHeat;            % timestep internal heat gains (W m-2 bld)
+        intHeatNight;       % nighttime internal heat gains (W m-2 floor)
+        intHeatDay;         % daytime internal heat gains (W m-2 floor)
+        intHeatFRad;        % radiant fraction of internal gains
+        intHeatFLat;        % latent fraction of internal gains
+        infil;              % Infiltration (ACH)
+        vent;               % Ventilation (ACH)
+        glazingRatio;       % glazing ratio
+        uValue;             % window U-value (W m-2 K-1) (including film coeff)
+        shgc;               % window SHGC
+        condType;           % cooling condensation system type {'AIR', 'WATER'}
+        cop;                % COP of the cooling system
+        fWaste;             % fraction of waste heat released into the canyon
+        coolSetpointDay;    % daytime indoor cooling set-point (K)
+        coolSetpointNight;  % nighttime indoor cooling set-point (K)
+        heatSetpointDay;    % daytime indoor heating set-point (K)
+        heatSetpointNight;  % nighttime indoor heating set-point (K)
+        coolCap;            % rated cooling system capacity (W m-2)
+        heatEff;            % heating system efficiency (-)
+        mSys;               % HVAC supply mass flowrate (kg s-1 m-2)
+        indoorTemp;         % indoor air temperature (K)
+        indoorHum;          % indoor specific humidity (kg m-3)
+        sensCoolDemand;     % building sensible cooling demand (W m-2)
+        sensHeatDemand;     % building sensible heating demand (W m-2)
+        dehumDemand;        % dehumidification energy (W m-2)
+        coolConsump;        % cooling energy consumption (W m-2)
+        heatConsump;        % heating energy consumption (W m-2)
+        sensWaste;          % sensible waste heat (W m-2)
+        latWaste;           % lat waste heat (W m-2)
+        fluxMass;           % mass surface heat flux (W m-2)
+        fluxWall;           % wall surface heat flux (W m-2)
+        fluxRoof;           % roof surface heat flux (W m-2)
     end
     
     methods
@@ -118,6 +117,8 @@ classdef Building
             elseif(roof.layerTemp(iroof) <= obj.indoorTemp);
                 zac_in_roof  = 4.040;
             else
+                disp(roof.layerTemp(iroof));
+                disp(obj.indoorTemp);
                 disp('----------------------')
                 disp('!!!!!FATAL ERROR!!!!!!');
                 disp('----------------------')
@@ -165,6 +166,7 @@ classdef Building
             zq_mix = zxmix*urbanArea.canHum +(1.-zxmix)*obj.indoorHum;
             % -------------------------------------------------------------
             %     Cooling system
+            % -------------------------------------------------------------
             if(obj.sensCoolDemand >= 0.0)
                 % supply air temperature
                 pt_sys = zt_mix - obj.sensCoolDemand/obj.mSys/parameter.cp;
@@ -185,21 +187,22 @@ classdef Building
                 end
                 % heating consumption
                 obj.sensHeatDemand = 0.0;
-                obj.heatConsump  = 0.0;
+                obj.heatConsump = 0.0;
             % -------------------------------------------------------------    
             %     Heating system
+            % -------------------------------------------------------------
             elseif(obj.sensHeatDemand > 0.0) ;
                 pt_sys = zt_mix + obj.sensHeatDemand/obj.mSys/parameter.cp;
                 pq_sys = zq_mix;
                 obj.heatConsump  = obj.sensHeatDemand / obj.heatEff;
-                obj.sensWaste    = obj.heatConsump - obj.sensHeatDemand;
-                obj.latWaste   = 0.0;
+                obj.sensWaste = obj.heatConsump - obj.sensHeatDemand;
+                obj.latWaste = 0.0;
                 obj.sensCoolDemand = 0.0;
-                obj.coolConsump  = 0.0;
-                obj.dehumDemand   = 0.0;
+                obj.coolConsump = 0.0;
+                obj.dehumDemand = 0.0;
             else
-                pt_sys     = zt_mix;
-                pq_sys     = zq_mix;
+                pt_sys = zt_mix;
+                pq_sys = zq_mix;
                 obj.sensCoolDemand = 0.0;
                 obj.sensHeatDemand = 0.0;
                 obj.coolConsump  = 0.0;
@@ -239,8 +242,6 @@ classdef Building
                 obj.intHeat * obj.intHeatFRad *(1.-obj.intHeatFLat)/ massArea +...
                 winTrans / massArea;
         end
-                
     end
-    
 end
 

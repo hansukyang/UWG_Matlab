@@ -37,8 +37,6 @@ classdef UblVars
                 obj.surfTemp = initialTemp;
             end
         end  
-
     end
-    
 end
 

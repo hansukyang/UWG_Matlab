@@ -1,14 +1,15 @@
 function [urbanArea,ublVars,urbanUsage,forc] = UrbFlux(urbanArea,ublVars,...
         urbanUsage,forc,parameter,simParam,refSite)
 
-    urbanArea.sensHeat  = 0.;
-    urbanArea.latHeat  = 0.;
-    urbanArea.sensAnthropTot  = 0.;
-    urbanArea.latAnthropTot  = 0.;
+    urbanArea.sensHeat = 0.;
+    urbanArea.latHeat = 0.;
+    urbanArea.sensAnthropTot = 0.;
+    urbanArea.latAnthropTot = 0.;
     [ublVars.ublEmis,ublVars.atmTemp,urbanArea.canEmis] = InfraCalcsAir(ublVars.ublTemp,...
         ublVars.atmTemp,urbanArea.bldHeight,urbanArea.canWidth,urbanArea.canHum,urbanArea.canTemp,refSite.ublPres,forc,parameter);
     urbanArea.canSkyLWCoef  = 4.*urbanArea.canEmis*parameter.sigma*((forc.skyTemp+urbanArea.canTemp)/2)^3.;
     ublVars.surfTemp = 0.;
+    
     for j = 1:numel(urbanUsage.urbanConf)
         %lw calculations
         urbanUsage.urbanConf(j).canWallLWCoef  = 4.*urbanArea.canEmis*urbanUsage.urbanConf(j).wall.emissivity*parameter.sigma*((urbanUsage.urbanConf(j).wall.layerTemp(1)+urbanArea.canTemp)/2)^3.;
@@ -110,18 +111,20 @@ function [urbanArea,ublVars,urbanUsage,forc] = UrbFlux(urbanArea,ublVars,...
     urbanArea.ustarMod = max(urbanArea.ustar,wstar);
     % Exchange velocity
     urbanArea.uExch = parameter.exCoeff*urbanArea.ustarMod;
-    % canyon wind speed, Eq. 27 Chp. 3 Hanna and Britter, 2002, assuming 
+
+    % Canyon wind speed, Eq. 27 Chp. 3 Hanna and Britter, 2002, assuming 
     % CD = 1 and lambda_f = verToHor/4
     urbanArea.canWind = urbanArea.ustarMod*(urbanArea.verToHor/8)^(-1/2);
-    % canyon turbulent velocities
+
+    % Canyon turbulent velocities
     urbanArea.turbU = 2.4*urbanArea.ustarMod;
     urbanArea.turbV = 1.9*urbanArea.ustarMod;
     urbanArea.turbW = 1.3*urbanArea.ustarMod;
-    % urban wind profile
+    
+    % Urban wind profile
     urbanArea.windProf = ones(1,refSite.nzref);
     for iz=1:refSite.nzref
         urbanArea.windProf(iz) = urbanArea.ustar/parameter.vk*...
         log((refSite.z(iz)+urbanArea.bldHeight-urbanArea.disp)/urbanArea.z0u);
     end
-
 end

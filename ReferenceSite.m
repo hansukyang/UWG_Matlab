@@ -1,5 +1,5 @@
 classdef ReferenceSite
-    %CITY Summary of this class goes here
+    %   CITY Summary of this class goes here
     %   Detailed explanation goes here
     
     properties

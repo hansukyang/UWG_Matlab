@@ -1,4 +1,4 @@
-mcc -C -o UWGEngine -W WinMain:UWGEngine -T link:exe -d C:\Sim\UWG_Matlab\UWGEngine\for_testing -R '-logfile,UWGEngine.log' -v C:\Sim\UWG_Matlab\xml_new.m -a C:\Sim\UWG_Matlab\coolCap.txt -a C:\Sim\UWG_Matlab\z_meso.txt 
+mcc -C -o UWGEngine -W WinMain:UWGEngine -T link:exe -d C:\Sim\UWG_Matlab\UWGEngine\for_testing -v C:\Sim\UWG_Matlab\xml_new.m 
 Compiler version: 6.1 (R2015b)
 
 Dependency analysis by REQUIREMENTS.
@@ -11,16 +11,9 @@ Deleting 0 temporary MEX authorization files.
 Generating file "C:\Sim\UWG_Matlab\UWGEngine\for_testing\readme.txt".
 Packaging...
 Adding custom icon C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico to C:\Sim\UWG_Matlab\UWGEngine\for_testing\UWGEngine.exe.
-Failed to add the icon, C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico, in the application.
-Update resource failed: 110
-Attempting to embed the default icon C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico.
-Failed to add the icon, C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico, in the application.
-Update resource failed: 110
 Attempting to embed the CTF archive into the application C:\Sim\UWG_Matlab\UWGEngine\for_testing\UWGEngine.exe.
-Failed to embed the CTF archive. Will leave the CTF archive along with the application.
-C:\Sim\UWG_Matlab\UWGEngine\for_testing\UWGEngine.exe (The process cannot access the file because it is being used by another process)
-Failed to add the icon, C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico, in the application.
+Finished embedding CTF archive. Deleting the external CTF archive.
 Creating the bundle...
 Web based installer created at C:\Sim\UWG_Matlab\UWGEngine\for_redistribution\MyAppInstaller_web.exe.
 Packaging complete.
-Elapsed packaging time was: 46 seconds.
+Elapsed packaging time was: 1 minutes and 15 seconds.

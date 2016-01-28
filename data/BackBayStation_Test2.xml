@@ -4,7 +4,7 @@
     <dist>25</dist>
     <construction>
       <wall>
-        <albedo>0.92</albedo>
+        <albedo>0.25</albedo>
         <emissivity>0.9</emissivity>
         <materials name="ASHRAE 90.1-2010 EXTWALL MASS CLIMATEZONE 5">
           <names>
@@ -32,7 +32,7 @@
         <initialTemperature>15.6</initialTemperature>
       </wall>
       <roof>
-        <albedo>0.7</albedo>
+        <albedo>0.4</albedo>
         <emissivity>0.9</emissivity>
         <materials name="ASHRAE 90.1-2010 EXTROOF IEAD CLIMATEZONE 2-8">
           <names>
@@ -110,7 +110,7 @@
     <dist>25</dist>
     <construction>
       <wall>
-        <albedo>0.92</albedo>
+        <albedo>0.25</albedo>
         <emissivity>0.9</emissivity>
         <materials name="ASHRAE 90.1-2010 EXTWALL MASS CLIMATEZONE 5">
           <names>
@@ -138,7 +138,7 @@
         <initialTemperature>20.0</initialTemperature>
       </wall>
       <roof>
-        <albedo>0.7</albedo>
+        <albedo>0.5</albedo>
         <emissivity>0.9</emissivity>
         <materials name="ASHRAE 90.1-2010 EXTROOF IEAD CLIMATEZONE 2-8">
           <names>
@@ -216,7 +216,7 @@
     <dist>25</dist>
     <construction>
       <wall>
-        <albedo>0.92</albedo>
+        <albedo>0.25</albedo>
         <emissivity>0.9</emissivity>
         <materials name="ASHRAE 90.1-2010 EXTWALL MASS CLIMATEZONE 5">
           <names>
@@ -235,7 +235,7 @@
         <initialTemperature>15.6</initialTemperature>
       </wall>
       <roof>
-        <albedo>0.7</albedo>
+        <albedo>0.5</albedo>
         <emissivity>0.9</emissivity>
         <materials name="ASHRAE 90.1-2010 EXTROOF IEAD CLIMATEZONE 2-8">
           <names>
@@ -326,8 +326,8 @@
         <initialTemperature>20</initialTemperature>
       </wall>
       <roof>
-        <albedo>2</albedo>
-        <emissivity>0.2</emissivity>
+        <albedo>0.5</albedo>
+        <emissivity>0.5</emissivity>
         <materials name="Boston C Roof">
           <names>
             <item>Roof Membrane</item>
@@ -421,7 +421,7 @@
           <item>asphalt</item>
         </names>
         <thermalConductivity>
-          <item>1</item>
+          <item>0.75</item>
         </thermalConductivity>
         <volumetricHeatCapacity>
           <item>1600000</item>
@@ -430,7 +430,7 @@
       </materials>
       <vegetationCoverage>0.0681100075034</vegetationCoverage>
       <inclination>1</inclination>
-      <initialTemperature>1.7</initialTemperature>
+      <initialTemperature>20</initialTemperature>
     </urbanRoad>
   </urbanArea>
   <referenceSite>
@@ -445,7 +445,7 @@
             <item>asphalt</item>
           </names>
           <thermalConductivity>
-            <item>1</item>
+            <item>0.75</item>
           </thermalConductivity>
           <volumetricHeatCapacity>
             <item>1600000</item>
@@ -467,8 +467,8 @@
     <windMax>10</windMax>
     <wgmax>0.005</wgmax>
     <exCoeff>0.3</exCoeff>
-    <simuStartMonth>1</simuStartMonth>
+    <simuStartMonth>7</simuStartMonth>
     <simuStartDay>1</simuStartDay>
-    <simuDuration>365</simuDuration>
+    <simuDuration>30</simuDuration>
   </parameter>
 </xml_input>
