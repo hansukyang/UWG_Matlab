@@ -1,130 +1,93 @@
-function [urbanArea,ublVars,urbanUsage,forc] = UrbFlux(urbanArea,ublVars,...
-        urbanUsage,forc,parameter,simParam,refSite)
+function [UCM,UBL,BEM] = UrbFlux(UCM,UBL,BEM,forc,parameter,simTime,RSM)
 
-    urbanArea.sensHeat = 0.;
-    urbanArea.latHeat = 0.;
-    urbanArea.sensAnthropTot = 0.;
-    urbanArea.latAnthropTot = 0.;
-    [ublVars.ublEmis,ublVars.atmTemp,urbanArea.canEmis] = InfraCalcsAir(ublVars.ublTemp,...
-        ublVars.atmTemp,urbanArea.bldHeight,urbanArea.canWidth,urbanArea.canHum,urbanArea.canTemp,refSite.ublPres,forc,parameter);
-    urbanArea.canSkyLWCoef  = 4.*urbanArea.canEmis*parameter.sigma*((forc.skyTemp+urbanArea.canTemp)/2)^3.;
-    ublVars.surfTemp = 0.;
+    % Calculate the surface heat fluxes
+    T_can = UCM.canTemp;
+    Cp = parameter.cp;
+    UCM.Q_roof = 0;
+    sigma = 5.67e-8;        % Stephan-Boltzman constant
+    UCM.roofTemp = 0;       % Average urban roof temperature
+    UCM.wallTemp = 0;       % Average urban wall temperature
     
-    for j = 1:numel(urbanUsage.urbanConf)
-        %lw calculations
-        urbanUsage.urbanConf(j).canWallLWCoef  = 4.*urbanArea.canEmis*urbanUsage.urbanConf(j).wall.emissivity*parameter.sigma*((urbanUsage.urbanConf(j).wall.layerTemp(1)+urbanArea.canTemp)/2)^3.;
-        urbanUsage.urbanConf(j).canRoadLWCoef  = 4.*urbanArea.canEmis*urbanUsage.urbanConf(j).road.emissivity*parameter.sigma*((urbanUsage.urbanConf(j).road.layerTemp(1)+urbanArea.canTemp)/2)^3.;
-        [urbanUsage.urbanConf(j).road,urbanUsage.urbanConf(j).wall,...
-            urbanUsage.urbanConf(j).roof] = InfraCalcs(urbanArea,...
-        forc,urbanUsage.urbanConf(j).building.glazingRatio,...
-        urbanUsage.urbanConf(j).road,urbanUsage.urbanConf(j).wall,...
-        urbanUsage.urbanConf(j).roof,parameter,...
-        urbanUsage.urbanConf(j).canWallLWCoef,urbanUsage.urbanConf(j).canRoadLWCoef);
-        % builidng energy model
-        urbanUsage.urbanConf(j).building = BuildingEnergyModel(urbanUsage.urbanConf(j).building,...
-            urbanArea,urbanUsage.urbanConf(j).roof,urbanUsage.urbanConf(j).wall,...
-            urbanUsage.urbanConf(j).building,urbanUsage.urbanConf(j).mass,forc.pres,parameter,simParam );
-        % mass
-        urbanUsage.urbanConf(j).mass.layerTemp = TransientConduction(urbanUsage.urbanConf(j).mass.layerTemp,...
-            simParam.dt,urbanUsage.urbanConf(j).mass.layerVolHeat,urbanUsage.urbanConf(j).mass.layerThermalCond,...
-            urbanUsage.urbanConf(j).mass.layerThickness,urbanUsage.urbanConf(j).building.fluxMass,1,forc.deepTemp,0.);
-        % roof
-        urbanUsage.urbanConf(j).roof = SurfFlux( urbanUsage.urbanConf(j).roof,...
-            forc,parameter,simParam,forc.hum,ublVars.ublTemp,...
-            forc.wind,1,urbanUsage.urbanConf(j).building.fluxRoof);
-        % wall
-        urbanUsage.urbanConf(j).wall = SurfFlux( urbanUsage.urbanConf(j).wall,...
-            forc,parameter,simParam,urbanArea.canHum,urbanArea.canTemp,...
-            forc.wind,1,urbanUsage.urbanConf(j).building.fluxWall);
-        % road
-        urbanUsage.urbanConf(j).road = SurfFlux( urbanUsage.urbanConf(j).road,...
-            forc,parameter,simParam,urbanArea.canHum,urbanArea.canTemp,...
-            urbanArea.canWind,2,0.);
-        % surface temperature
-        ublVars.surfTemp = ublVars.surfTemp +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).roof.layerTemp(1)*urbanArea.bldDensity+...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).road.layerTemp(1)*(1-urbanArea.bldDensity)*(1-urbanArea.canEmis);
-        % urban sensible heat flux
-        urbanArea.sensHeat  = urbanArea.sensHeat +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).roof.sens*urbanArea.bldDensity +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).road.sens*(1-urbanArea.bldDensity) +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).wall.sens*urbanArea.verToHor +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).building.sensWaste;
-        % urban latent heat flux
-        urbanArea.latHeat  = urbanArea.latHeat +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).roof.lat*urbanArea.bldDensity +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).road.lat*(1-urbanArea.bldDensity) +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).wall.lat*urbanArea.verToHor +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).building.latWaste;
-        % urban sensible anthropogenic heat flux
-        urbanArea.sensAnthropTot  = urbanArea.sensAnthropTot +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).building.intHeat*urbanArea.bldDensity +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).building.heatConsump*urbanArea.bldDensity +...
-            urbanUsage.frac(j)*urbanUsage.urbanConf(j).building.coolConsump*urbanArea.bldDensity;
+    for j = 1:numel(BEM)
+
+        % Building energy model
+        BEM(j).building = BEMCalc(BEM(j).building,UCM,BEM(j),forc,parameter,simTime);
+        BEM(j).ElecTotal = BEM(j).building.ElecTotal * BEM(j).fl_area;
+
+        % Update roof infra calc
+        e_roof = BEM(j).roof.emissivity;
+        T_roof = BEM(j).roof.layerTemp(1);     
+        BEM(j).roof.infra = e_roof*(forc.infra - sigma*T_roof^4);
+        
+        % update wall infra calc (road done later)
+        e_wall = BEM(j).wall.emissivity;
+        T_wall = BEM(j).wall.layerTemp(1);
+        [~,BEM(j).wall.infra]= InfraCalcs(UCM,forc, UCM.road.emissivity,e_wall,UCM.roadTemp,T_wall);
+        
+        % Update element temperatures
+        BEM(j).mass.layerTemp = Conduction(BEM(j).mass,simTime.dt,BEM(j).building.fluxMass,1,0,BEM(j).building.fluxMass);
+        BEM(j).roof = SurfFlux(BEM(j).roof,forc,parameter,simTime,UCM.canHum,T_can,max(forc.wind,UCM.canWind),1,BEM(j).building.fluxRoof);
+        BEM(j).wall = SurfFlux(BEM(j).wall,forc,parameter,simTime,UCM.canHum,T_can,UCM.canWind,1,BEM(j).building.fluxWall);
+
+        % Note the average wall & roof temperature
+        UCM.wallTemp = UCM.wallTemp + BEM(j).frac*BEM(j).wall.layerTemp(1);
+        UCM.roofTemp = UCM.roofTemp + BEM(j).frac*BEM(j).roof.layerTemp(1);
+
     end
-    % surface temperature
-    ublVars.surfTemp = ublVars.surfTemp + urbanArea.canTemp*(1-urbanArea.bldDensity)*urbanArea.canEmis;
-    % advection heat flux
+    
+    % Update road infra calc (assume walls have similar emissivity, so use the last one)
+    [UCM.road.infra,~] = InfraCalcs(UCM,forc,UCM.road.emissivity,e_wall,UCM.roadTemp,UCM.wallTemp);
+    UCM.road = SurfFlux(UCM.road,forc,parameter,simTime,UCM.canHum,T_can,UCM.canWind,2,0.);
+    UCM.roadTemp = UCM.road.layerTemp(1);
+
+    % Sensible & latent heat flux (total)
+    UCM.latHeat = UCM.latHeat + UCM.latAnthrop + UCM.treeLatHeat + UCM.road.lat*(1-UCM.bldDensity);
+ 
+    % ---------------------------------------------------------------------
+    % Advective heat flux to UBL from VDM
+    % ---------------------------------------------------------------------
     forDens = 0;
     intAdv1 = 0;
     intAdv2 = 0;
-    for iz=1:refSite.nzfor
-        forDens = forDens +...
-            refSite.densityProfC(iz)*refSite.dz(iz)/...
-            (refSite.z(refSite.nzfor)+refSite.dz(refSite.nzfor)/2);
-      intAdv1 = intAdv1 + refSite.windProf(iz)*refSite.tempProf(iz)*refSite.dz(iz);
-      intAdv2 = intAdv2 + refSite.windProf(iz)*refSite.dz(iz);
+    for iz=1:RSM.nzfor
+        forDens = forDens + RSM.densityProfC(iz)*RSM.dz(iz)/...
+            (RSM.z(RSM.nzfor)+RSM.dz(RSM.nzfor)/2);
+        intAdv1 = intAdv1 + RSM.windProf(iz)*RSM.tempProf(iz)*RSM.dz(iz);
+        intAdv2 = intAdv2 + RSM.windProf(iz)*RSM.dz(iz);
     end
-    % parlength = ublVars.paralLength
-    % forcdens = forDens
-    % intadv1 = intAdv1
-    % intadv2 = intAdv2
-    % urbarea = urbanArea.urbArea
-    ublVars.advHeat = ublVars.paralLength*parameter.cp*forDens*(intAdv1-ublVars.ublTemp*intAdv2)/ublVars.urbArea;
-    % net LW radiation heat flux
-    ublVars.radHeat = 4.*ublVars.ublEmis*parameter.sigma*((ublVars.atmTemp+ublVars.ublTemp)/2)^3*(ublVars.atmTemp-ublVars.ublTemp)+...
-        4.*ublVars.ublEmis*parameter.sigma*((ublVars.surfTemp+ublVars.ublTemp)/2)^3*(ublVars.surfTemp-ublVars.ublTemp);
-    % urban sensible heat flux
-    urbanArea.sensHeat  = urbanArea.sensHeat +...
-        urbanArea.sensAnthrop + urbanArea.treeSensHeat;
-    % urban latent heat flux
-    urbanArea.latHeat  = urbanArea.latHeat +...
-        urbanArea.latAnthrop + urbanArea.treeLatHeat;
-    % urban sensible anthropogenic heat flux
-    urbanArea.sensAnthropTot  = urbanArea.sensAnthropTot+urbanArea.sensAnthrop;
-    % urban latent anthropogenic heat flux
-    urbanArea.latAnthropTot  = urbanArea.latAnthropTot+urbanArea.latAnthrop;
-    % Urban blending height
-    zrUrb = 2.0*urbanArea.bldHeight;
-    % Reference height
-    zref = refSite.z(refSite.nzref);
-    % Reference wind speed
-    windUrb = forc.wind*log(zref/refSite.z0r)/log(parameter.windHeight/refSite.z0r)*...
-        log(zrUrb/urbanArea.z0u)/log(zref/urbanArea.z0u);
-    % Friction velocity
-    urbanArea.ustar = parameter.vk*windUrb/log((zrUrb-urbanArea.disp)/urbanArea.z0u);
-    % Canyon density
-    dens = Density(urbanArea.canTemp,urbanArea.canHum,forc.pres);
-    % Convective scaling velocity)
-    wstar = (parameter.g*max(urbanArea.sensHeat,0)*zref/dens/parameter.cp/urbanArea.canTemp)^(1/3);
-    % Modified friction velocity
-    urbanArea.ustarMod = max(urbanArea.ustar,wstar);
-    % Exchange velocity
-    urbanArea.uExch = parameter.exCoeff*urbanArea.ustarMod;
+    UBL.advHeat = UBL.paralLength*Cp*forDens*(intAdv1-UBL.ublTemp*intAdv2)/UBL.urbArea;
+    
+    % ---------------------------------------------------------------------
+    % Convective heat flux to UBL from UCM (see Appendix - Bueno (2014))
+    % ---------------------------------------------------------------------
+    zrUrb = 2*UCM.bldHeight;
+    zref = RSM.z(RSM.nzref);    % Reference height
 
-    % Canyon wind speed, Eq. 27 Chp. 3 Hanna and Britter, 2002, assuming 
-    % CD = 1 and lambda_f = verToHor/4
-    urbanArea.canWind = urbanArea.ustarMod*(urbanArea.verToHor/8)^(-1/2);
+    % Reference wind speed & canyon air density
+    windUrb = forc.wind*log(zref/RSM.z0r)/log(parameter.windHeight/RSM.z0r)*...
+        log(zrUrb/UCM.z0u)/log(zref/UCM.z0u);
+    dens = forc.pres/(1000*0.287042*T_can*(1.+1.607858*UCM.canHum));
+    
+    % Friction velocity
+    UCM.ustar = parameter.vk*windUrb/log((zrUrb-UCM.l_disp)/UCM.z0u);
+    
+    % Convective scaling velocity
+    wstar = (parameter.g*max(UCM.sensHeat,0)*zref/dens/Cp/T_can)^(1/3);
+    UCM.ustarMod = max(UCM.ustar,wstar);        % Modified friction velocity
+    UCM.uExch = parameter.exCoeff*UCM.ustarMod; % Exchange velocity
+
+    % Canyon wind speed, Eq. 27 Chp. 3 Hanna and Britter, 2002
+    % assuming CD = 1 and lambda_f = verToHor/4
+    UCM.canWind = UCM.ustarMod*(UCM.verToHor/8)^(-1/2);
 
     % Canyon turbulent velocities
-    urbanArea.turbU = 2.4*urbanArea.ustarMod;
-    urbanArea.turbV = 1.9*urbanArea.ustarMod;
-    urbanArea.turbW = 1.3*urbanArea.ustarMod;
+    UCM.turbU = 2.4*UCM.ustarMod;
+    UCM.turbV = 1.9*UCM.ustarMod;
+    UCM.turbW = 1.3*UCM.ustarMod;
     
     % Urban wind profile
-    urbanArea.windProf = ones(1,refSite.nzref);
-    for iz=1:refSite.nzref
-        urbanArea.windProf(iz) = urbanArea.ustar/parameter.vk*...
-        log((refSite.z(iz)+urbanArea.bldHeight-urbanArea.disp)/urbanArea.z0u);
+    for iz=1:RSM.nzref
+        UCM.windProf(iz) = UCM.ustar/parameter.vk*...
+            log((RSM.z(iz)+UCM.bldHeight-UCM.l_disp)/UCM.z0u);
     end
 end

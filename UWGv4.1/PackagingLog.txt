@@ -1,0 +1,19 @@
+mcc -C -o UWGv4 -W WinMain:UWGv4 -T link:exe -d C:\Sim\uwg4.1\UWGv4\for_testing -v C:\Sim\UWG4.1\UWG.m -a C:\Sim\UWG4.1\RefDOE.mat -a C:\Sim\UWG4.1\SchDef.m -a C:\Sim\UWG4.1\UWGoutput.xlsx -a C:\Sim\UWG4.1\z_meso.txt 
+Compiler version: 6.1 (R2015b)
+
+Dependency analysis by REQUIREMENTS.
+
+[Warning: Adding path "C:\Sim\UWG4.1" to Compiler path instance.] 
+[] 
+Parsing file "C:\Sim\uwg4.1\UWG.m"
+	(Referenced from: "Compiler Command Line").
+Deleting 0 temporary MEX authorization files.
+Generating file "C:\Sim\uwg4.1\UWGv4\for_testing\readme.txt".
+Packaging...
+Adding custom icon C:\Program Files\MATLAB\R2015b\toolbox\compiler\Resources\default_icon.ico to C:\Sim\uwg4.1\UWGv4\for_testing\UWGv4.exe.
+Attempting to embed the CTF archive into the application C:\Sim\uwg4.1\UWGv4\for_testing\UWGv4.exe.
+Finished embedding CTF archive. Deleting the external CTF archive.
+Creating the bundle...
+Web based installer created at C:\Sim\uwg4.1\UWGv4\for_redistribution\UWGv4.1_Installer.exe.
+Packaging complete.
+Elapsed packaging time was: 1 minutes and 17 seconds.

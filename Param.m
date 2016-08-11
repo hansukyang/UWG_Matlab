@@ -21,13 +21,12 @@ classdef Param
         nightSetStart;  % begin hour for night thermal set point schedule
         nightSetEnd;    % end hour for night thermal set point schedule
         windMin;        % minimum wind speed (m s-1)
-        windMax;        % maximum wind speed (m s-1)
         wgmax;          % maximum film water depth on horizontal surfaces (m)
         exCoeff;        % exchange velocity coefficient
         maxdx;          % maximum discretization length for the UBL model (m)
-% physical parameters
+        % physical parameters
         g;              % gravity
-        cp;             % heat capacity for air (constant pressure)
+        cp;             % heat capacity for air ((J/kg.K))
         vk;             % von karman constant
         r;              % gas constant
         rv;
@@ -44,29 +43,11 @@ classdef Param
         cm; 
         colburn;        % (Pr/Sc)^(2/3) for Colburn analogy in water evaporation
     end
-%         properties (Constant = true)% physical parameters
-%         g = 9.81;             % gravity
-%         cp = 1004.;           % heat capacity for air (constant pressure)
-%         vk = 0.40;            % von karman constant
-%         r = 287.;             % gas constant
-%         rv = 461.5;
-%         lv = 2.26e6;          % latent heat of evaporation
-%         pi = 3.141592653;     % pi
-%         sigma = 5.67e-08 ;    % Stefan Boltzmann constant
-%         waterDens = 1000;     % water density
-%         lvtt = 2.5008e6;
-%         tt = 273.16;
-%         estt = 611.14;
-%         cl = 4.218e3;
-%         cpv = 1846.1;
-%         b   = 9.4;            % Coefficients derived by Louis (1979)
-%         cm  = 7.4; 
-%         colburn = (0.713/0.621)^(2./3.); % (Pr/Sc)^(2/3) for Colburn analogy in water evaporation
-%     end
+
     methods
         function obj = Param(dayBLHeight, nightBLHeight, refHeight, tempHeight, windHeight, ...
                 circCoeff, dayThreshold, nightThreshold, treeFLat, grassFLat, vegAlbedo, vegStart, ...
-                vegEnd, nightSetStart, nightSetEnd, windMin, windMax, wgmax, exCoeff, maxdx, g, ...
+                vegEnd, nightSetStart, nightSetEnd, windMin, wgmax, exCoeff, maxdx, g, ...
                 cp, vk, r, rv, lv, pi, sigma, waterDens, lvtt, tt, estt, cl, cpv, b, cm, colburn)
             % class constructor
             if(nargin > 0)
@@ -86,7 +67,6 @@ classdef Param
                 obj.nightSetStart = nightSetStart;
                 obj.nightSetEnd = nightSetEnd;
                 obj.windMin = windMin;
-                obj.windMax = windMax;
                 obj.wgmax = wgmax;
                 obj.exCoeff = exCoeff;
                 obj.maxdx = maxdx;

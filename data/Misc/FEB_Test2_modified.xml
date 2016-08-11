@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml_input>
+  <typology1 dist="100" name="residential1">
+    <dist>100</dist>
+    <construction>
+      <wall>
+        <albedo>0.5</albedo>
+        <emissivity>0.91</emissivity>
+        <materials name="Boston R1">
+          <names>
+            <item>Stucco</item>
+            <item>Concrete HW</item>
+            <item>Insulation</item>
+            <item>Gypsum</item>
+          </names>
+          <thermalConductivity>
+            <item>0.6918</item>
+            <item>0.311</item>
+            <item>0.049</item>
+            <item>0.16</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>1555146</item>
+            <item>1874432</item>
+            <item>221752</item>
+            <item>651467</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.02,0.20,0.02,0.01]</thickness>
+        </materials>
+        <vegetationCoverage>0.0</vegetationCoverage>
+        <inclination>0</inclination>
+        <initialTemperature>24</initialTemperature>
+      </wall>
+      <roof>
+        <albedo>0.2</albedo>
+        <emissivity>0.9</emissivity>
+        <materials name="Boston R1 Roof">
+          <names>
+            <item>Roof Membrane</item>
+            <item>Insulation</item>
+            <item>Concrete HW</item>
+          </names>
+          <thermalConductivity>
+            <item>0.16</item>
+            <item>0.5</item>
+            <item>0.311</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>1637083</item>
+            <item>221752</item>
+            <item>1874432</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.01,0.05,0.2]</thickness>
+        </materials>
+        <vegetationCoverage>0.0</vegetationCoverage>
+        <inclination>1</inclination>
+        <initialTemperature>24</initialTemperature>
+      </roof>
+      <mass>
+        <albedo>0.5</albedo>
+        <emissivity>0.9</emissivity>
+        <materials name="Boston R IM">
+          <names>
+            <item>Concrete HW</item>
+            <item>Concrete HW</item>
+          </names>
+          <thermalConductivity>
+            <item>1.31</item>
+            <item>1.31</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>1874432</item>
+            <item>1874432</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.05,0.05]</thickness>
+        </materials>
+        <vegetationCoverage>0</vegetationCoverage>
+        <inclination>1</inclination>
+        <initialTemperature>20</initialTemperature>
+      </mass>
+      <glazing name="Boston R">
+        <glazingRatio>0.5</glazingRatio>
+        <windowUvalue>3.88</windowUvalue>
+        <windowSHGC>0.63</windowSHGC>
+      </glazing>
+    </construction>
+    <building name="BOS Commericial">
+      <floorHeight>3.5</floorHeight>
+      <dayInternalGains>20</dayInternalGains>
+      <nightInternalGains>20</nightInternalGains>
+      <radiantFraction>0.47</radiantFraction>
+      <latentFraction>0.09</latentFraction>
+      <infiltration>0.5</infiltration>
+      <ventilation>0</ventilation>
+      <coolingSystemType>air</coolingSystemType>
+      <coolingCOP>2.5</coolingCOP>
+      <daytimeCoolingSetPoint>24</daytimeCoolingSetPoint>
+      <nighttimeCoolingSetPoint>24</nighttimeCoolingSetPoint>
+      <daytimeHeatingSetPoint>15</daytimeHeatingSetPoint>
+      <nighttimeHeatingSetPoint>15</nighttimeHeatingSetPoint>
+      <coolingCapacity>2000</coolingCapacity>
+      <heatingEfficiency>0.8</heatingEfficiency>
+      <nightSetStart>19</nightSetStart>
+      <nightSetEnd>5</nightSetEnd>
+      <heatReleasedToCanyon>0.5</heatReleasedToCanyon>
+      <initialT>24</initialT>
+    </building>
+  </typology1>
+
+
+
+
+
+
+
+
+  <typology2 dist="0" name="commercial1">
+    <dist>0</dist>
+    <construction>
+      <wall>
+        <albedo>0.2</albedo>
+        <emissivity>0.9</emissivity>
+        <materials name="Boston R">
+          <names>
+            <item>Wood Siding</item>
+            <item>Steel Frame Insulation</item>
+            <item>Gypsum</item>
+          </names>
+          <thermalConductivity>
+            <item>0.69</item>
+            <item>0.31</item>
+            <item>0.04</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>958990</item>
+            <item>921752</item>
+            <item>221752</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.02,0.20,0.04]</thickness>
+        </materials>
+        <vegetationCoverage>0</vegetationCoverage>
+        <inclination>0</inclination>
+        <initialTemperature>20</initialTemperature>
+      </wall>
+      <roof>
+        <albedo>0.2</albedo>
+        <emissivity>0.9</emissivity>
+        <materials name="Boston R Roof">
+          <names>
+            <item>Roof Membrane</item>
+            <item>Insulation</item>
+            <item>Metal Decking</item>
+          </names>
+          <thermalConductivity>
+            <item>0.16</item>
+            <item>0.5</item>
+            <item>15.01</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>1637083</item>
+            <item>221752</item>
+            <item>1874432</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.01,0.0473,0.2032]</thickness>
+        </materials>
+        <vegetationCoverage>0.1</vegetationCoverage>
+        <inclination>1</inclination>
+        <initialTemperature>20</initialTemperature>
+      </roof>
+      <mass>
+        <albedo>0.5</albedo>
+        <emissivity>0.9</emissivity>
+        <materials name="Boston R IM">
+          <names>
+            <item>Concrete HW</item>
+          </names>
+          <thermalConductivity>
+            <item>1.31</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>1874432</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.1]</thickness>
+        </materials>
+        <vegetationCoverage>0</vegetationCoverage>
+        <inclination>1</inclination>
+        <initialTemperature>20</initialTemperature>
+      </mass>
+      <glazing name="Boston R">
+        <glazingRatio>0.21</glazingRatio>
+        <windowUvalue>3.2</windowUvalue>
+        <windowSHGC>0.39</windowSHGC>
+      </glazing>
+    </construction>
+    <building name="BOS Commericial">
+      <floorHeight>3</floorHeight>
+      <dayInternalGains>24.7145454545455</dayInternalGains>
+      <nightInternalGains>5.58725274725274</nightInternalGains>
+      <radiantFraction>0.5</radiantFraction>
+      <latentFraction>0.09</latentFraction>
+      <infiltration>0.176785714285714</infiltration>
+      <ventilation>1</ventilation>
+      <coolingSystemType>air</coolingSystemType>
+      <coolingCOP>3.7</coolingCOP>
+      <daytimeCoolingSetPoint>20</daytimeCoolingSetPoint>
+      <nighttimeCoolingSetPoint>20</nighttimeCoolingSetPoint>
+      <daytimeHeatingSetPoint>20</daytimeHeatingSetPoint>
+      <nighttimeHeatingSetPoint>17</nighttimeHeatingSetPoint>
+      <coolingCapacity>205</coolingCapacity>
+      <heatingEfficiency>0.8</heatingEfficiency>
+      <nightSetStart>19</nightSetStart>
+      <nightSetEnd>5</nightSetEnd>
+      <heatReleasedToCanyon>0</heatReleasedToCanyon>
+      <initialT>20</initialT>
+    </building>
+  </typology2>
+  <typology3 dist="0" name="residential2">
+        <dist>0</dist>
+    <construction>
+      <wall>
+        <albedo>0.2</albedo>
+        <emissivity>0.9</emissivity>
+        <materials name="Boston R">
+          <names>
+            <item>Wood Siding</item>
+            <item>Steel Frame Insulation</item>
+            <item>Gypsum</item>
+          </names>
+          <thermalConductivity>
+            <item>0.69</item>
+            <item>0.31</item>
+            <item>0.04</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>958990</item>
+            <item>921752</item>
+            <item>221752</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.02,0.20,0.04]</thickness>
+        </materials>
+        <vegetationCoverage>0</vegetationCoverage>
+        <inclination>0</inclination>
+        <initialTemperature>20</initialTemperature>
+      </wall>
+      <roof>
+        <albedo>0.2</albedo>
+        <emissivity>0.9</emissivity>
+        <materials name="Boston R Roof">
+          <names>
+            <item>Roof Membrane</item>
+            <item>Insulation</item>
+            <item>Metal Decking</item>
+          </names>
+          <thermalConductivity>
+            <item>0.16</item>
+            <item>0.5</item>
+            <item>15.01</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>1637083</item>
+            <item>221752</item>
+            <item>1874432</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.01,0.0473,0.2032]</thickness>
+        </materials>
+        <vegetationCoverage>0.1</vegetationCoverage>
+        <inclination>1</inclination>
+        <initialTemperature>20</initialTemperature>
+      </roof>
+      <mass>
+        <albedo>0.5</albedo>
+        <emissivity>0.9</emissivity>
+        <materials name="Boston R IM">
+          <names>
+            <item>Concrete HW</item>
+          </names>
+          <thermalConductivity>
+            <item>1.31</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>1874432</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.1]</thickness>
+        </materials>
+        <vegetationCoverage>0</vegetationCoverage>
+        <inclination>1</inclination>
+        <initialTemperature>20</initialTemperature>
+      </mass>
+      <glazing name="Boston R">
+        <glazingRatio>0.21</glazingRatio>
+        <windowUvalue>3.2</windowUvalue>
+        <windowSHGC>0.39</windowSHGC>
+      </glazing>
+    </construction>
+    <building name="BOS Commericial">
+      <floorHeight>3</floorHeight>
+      <dayInternalGains>24.7145454545455</dayInternalGains>
+      <nightInternalGains>5.58725274725274</nightInternalGains>
+      <radiantFraction>0.5</radiantFraction>
+      <latentFraction>0.09</latentFraction>
+      <infiltration>0.176785714285714</infiltration>
+      <ventilation>1</ventilation>
+      <coolingSystemType>air</coolingSystemType>
+      <coolingCOP>3.7</coolingCOP>
+      <daytimeCoolingSetPoint>20</daytimeCoolingSetPoint>
+      <nighttimeCoolingSetPoint>20</nighttimeCoolingSetPoint>
+      <daytimeHeatingSetPoint>20</daytimeHeatingSetPoint>
+      <nighttimeHeatingSetPoint>17</nighttimeHeatingSetPoint>
+      <coolingCapacity>205</coolingCapacity>
+      <heatingEfficiency>0.8</heatingEfficiency>
+      <nightSetStart>19</nightSetStart>
+      <nightSetEnd>5</nightSetEnd>
+      <heatReleasedToCanyon>0</heatReleasedToCanyon>
+      <initialT>20</initialT>
+    </building>
+  </typology3>
+  <typology4 dist="0" name="commercial2">
+        <dist>0</dist>
+    <construction>
+      <wall>
+        <albedo>0.2</albedo>
+        <emissivity>0.9</emissivity>
+        <materials name="Boston R">
+          <names>
+            <item>Wood Siding</item>
+            <item>Steel Frame Insulation</item>
+            <item>Gypsum</item>
+          </names>
+          <thermalConductivity>
+            <item>0.69</item>
+            <item>0.31</item>
+            <item>0.04</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>958990</item>
+            <item>921752</item>
+            <item>221752</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.02,0.20,0.04]</thickness>
+        </materials>
+        <vegetationCoverage>0</vegetationCoverage>
+        <inclination>0</inclination>
+        <initialTemperature>20</initialTemperature>
+      </wall>
+      <roof>
+        <albedo>0.2</albedo>
+        <emissivity>0.9</emissivity>
+        <materials name="Boston R Roof">
+          <names>
+            <item>Roof Membrane</item>
+            <item>Insulation</item>
+            <item>Metal Decking</item>
+          </names>
+          <thermalConductivity>
+            <item>0.16</item>
+            <item>0.5</item>
+            <item>15.01</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>1637083</item>
+            <item>221752</item>
+            <item>1874432</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.01,0.0473,0.2032]</thickness>
+        </materials>
+        <vegetationCoverage>0.1</vegetationCoverage>
+        <inclination>1</inclination>
+        <initialTemperature>20</initialTemperature>
+      </roof>
+      <mass>
+        <albedo>0.5</albedo>
+        <emissivity>0.9</emissivity>
+        <materials name="Boston R IM">
+          <names>
+            <item>Concrete HW</item>
+          </names>
+          <thermalConductivity>
+            <item>1.31</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>1874432</item>
+          </volumetricHeatCapacity>
+          <thickness>[0.1]</thickness>
+        </materials>
+        <vegetationCoverage>0</vegetationCoverage>
+        <inclination>1</inclination>
+        <initialTemperature>20</initialTemperature>
+      </mass>
+      <glazing name="Boston R">
+        <glazingRatio>0.21</glazingRatio>
+        <windowUvalue>3.2</windowUvalue>
+        <windowSHGC>0.39</windowSHGC>
+      </glazing>
+    </construction>
+    <building name="BOS Commericial">
+      <floorHeight>3</floorHeight>
+      <dayInternalGains>24.7145454545455</dayInternalGains>
+      <nightInternalGains>5.58725274725274</nightInternalGains>
+      <radiantFraction>0.5</radiantFraction>
+      <latentFraction>0.09</latentFraction>
+      <infiltration>0.176785714285714</infiltration>
+      <ventilation>1</ventilation>
+      <coolingSystemType>air</coolingSystemType>
+      <coolingCOP>3.7</coolingCOP>
+      <daytimeCoolingSetPoint>20</daytimeCoolingSetPoint>
+      <nighttimeCoolingSetPoint>20</nighttimeCoolingSetPoint>
+      <daytimeHeatingSetPoint>20</daytimeHeatingSetPoint>
+      <nighttimeHeatingSetPoint>17</nighttimeHeatingSetPoint>
+      <coolingCapacity>205</coolingCapacity>
+      <heatingEfficiency>0.8</heatingEfficiency>
+      <nightSetStart>19</nightSetStart>
+      <nightSetEnd>5</nightSetEnd>
+      <heatReleasedToCanyon>0</heatReleasedToCanyon>
+      <initialT>20</initialT>
+    </building>
+  </typology4>
+
+
+
+
+
+
+
+
+  <urbanArea>
+    <averageBuildingHeight>45.5</averageBuildingHeight>
+    <siteCoverageRatio>0.24</siteCoverageRatio>
+    <facadeToSiteRatio>2.202</facadeToSiteRatio>
+    <treeCoverage>0.0</treeCoverage>
+    <nonBldgSensibleHeat>50</nonBldgSensibleHeat>
+    <nonBldgLatentAnthropogenicHeat>0</nonBldgLatentAnthropogenicHeat>
+    <charLength>1000</charLength>
+    <treeLatent>0.7</treeLatent>
+    <grassLatent>0.6</grassLatent>
+    <vegAlbedo>0.25</vegAlbedo>
+    <vegStart>1</vegStart>
+    <vegEnd>12</vegEnd>
+    <daytimeBLHeight>700</daytimeBLHeight>
+    <nighttimeBLHeight>80</nighttimeBLHeight>
+    <refHeight>150</refHeight>
+    <urbanRoad>
+      <albedo>0.165</albedo>
+      <emissivity>0.95</emissivity>
+      <materials name="Default">
+        <names>
+          <item>asphalt</item>
+        </names>
+        <thermalConductivity>
+          <item>1</item>
+        </thermalConductivity>
+        <volumetricHeatCapacity>
+          <item>1600000</item>
+        </volumetricHeatCapacity>
+        <thickness>1.25</thickness>
+      </materials>
+      <vegetationCoverage>0.5</vegetationCoverage>
+      <inclination>1</inclination>
+      <initialTemperature>20</initialTemperature>
+    </urbanRoad>
+  </urbanArea>
+  <referenceSite>
+    <latitude>24.496677</latitude>
+    <longitude>54.384186</longitude>
+    <averageObstacleHeight>0.1</averageObstacleHeight>
+    <ruralRoad>
+        <albedo>0.165</albedo>
+        <emissivity>0.95</emissivity>
+        <materials name="Default">
+          <names>
+            <item>asphalt</item>
+          </names>
+          <thermalConductivity>
+            <item>1</item>
+          </thermalConductivity>
+          <volumetricHeatCapacity>
+            <item>1600000</item>
+          </volumetricHeatCapacity>
+          <thickness>1.25</thickness>
+        </materials>
+        <vegetationCoverage>0.05</vegetationCoverage>
+        <inclination>1</inclination>
+        <initialTemperature>24</initialTemperature>
+    </ruralRoad>
+  </referenceSite>
+  <parameter>
+    <tempHeight>2</tempHeight>
+    <windHeight>10</windHeight>
+    <circCoeff>1.2</circCoeff>
+    <dayThreshold>200</dayThreshold>
+    <nightThreshold>50</nightThreshold>
+    <windMin>0.1</windMin>
+    <windMax>10</windMax>
+    <wgmax>0.005</wgmax>
+    <exCoeff>0.3</exCoeff>
+    <simuStartMonth>2</simuStartMonth>
+    <simuStartDay>2</simuStartDay>
+    <simuDuration>55</simuDuration>
+  </parameter>
+</xml_input>

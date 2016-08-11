@@ -16,6 +16,7 @@ classdef SimParam
         timeFinal;     % final timestep of simulation
         timeInitial;   % initial timestep of simulation
         secDay;        % seconds of one day (s)
+        hourDay;       % hour of the day (0 - 23hr)
         inobis;        % julian day at the end of each month
         julian;        % julian day
     end
@@ -37,26 +38,28 @@ classdef SimParam
                 obj.inobis = [0,31,59,90,120,151,181,212,243,273,304,334];
                 obj.julian = obj.inobis(M)+DAY-1;
                 H1 = (obj.inobis(M)+DAY-1)*obj.timeDay;
-                obj.timeFinal = H1 + obj.timeDay*obj.days - 1 + 8;
                 obj.timeInitial = H1 + 8;
-                obj.secDay = 0;      
+                obj.timeFinal = H1 + obj.timeDay*obj.days - 1 + 8;
+                obj.secDay = 0;
+                obj.hourDay = 0;
             end
         end
         
         % update date
         function obj = UpdateDate(obj)
             obj.secDay = obj.secDay + obj.dt;
-              if obj.secDay == 3600*24
+            if obj.secDay == 3600*24
                 obj.day = obj.day+1;
                 obj.julian = obj.julian+1;
                 obj.secDay = 0;
                 for j = 1:12
-                  if obj.julian == obj.inobis(j)
-                    obj.month = obj.month + 1;
-                    obj.day = 1;
-                  end
+                    if obj.julian == obj.inobis(j)
+                        obj.month = obj.month + 1;
+                        obj.day = 1;
+                    end
                 end
-              end
+            end
+            obj.hourDay = floor(obj.secDay/3600);       % 0 - 23hr
         end
     end
 end

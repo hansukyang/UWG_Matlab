@@ -24,16 +24,16 @@
 % Materials
 	% thermal conductivity (W m-1 K-1)
 	% volumetric heat capacity (J m-3 K-1)
-brick = Material(1.3,1.58e6);
-concrete = Material(1.51,1.50e6);
-insulation = Material(0.038,5.2e4);
+brick = Material(1.3,1739000);
+concrete = Material(1.51,2112000);
+insulation = Material(0.038,26720);
 wood = Material(0.93,1.2e6);
 asphalt = Material(0.75,1.94e6);
-stones = Material(0.95,2.0e6);
+stones = Material(0.95,1.2e6);
 soil = Material(0.4,1.4e6);
-drywall = Material(0.17,1.4e6);
-plywood = Material(0.12,1.4e6);
-plenum = Material(0.025,1.4e6);
+drywall = Material(0.17,840000);
+plywood = Material(0.12,662175);
+plenum = Material(0.025,1030);
 % Massive elements
 	% albedo
 	% emissivity
@@ -42,10 +42,10 @@ plenum = Material(0.025,1.4e6);
 	% vegetation coverage
 	% initial temperature (K)
 	% inclination (horizontal - 1, vertical - 0)
-wall = Element(0.25,0.9,[0.1;0.089;0.013],...
-    [brick;insulation;drywall],0.,293.,0);
-roof = Element(0.25,0.9,[0.019;0.1;0.2;0.013],...
-    [plywood;plenum;insulation;drywall],0.,293.,1);
+wall = Element(0.3,0.9,[0.1;0.089;0.013],...
+    [brick;insulation;drywall],0.,295.,0);
+roof = Element(0.6,0.9,[0.019;0.1;0.2;0.013],...
+    [plywood;plenum;insulation;drywall],0.,295.,1);
 % if road_a(ii)<0.2
 % road = Element(road_a(ii),0.95,[0.2;0.2],...
 %     [asphalt;stones],0.0,293.,1);
@@ -53,13 +53,13 @@ roof = Element(0.25,0.9,[0.019;0.1;0.2;0.013],...
 %     road = Element(road_a(ii),0.95,[0.2;0.2],...
 %     [concrete;stones],0.0,293.,1);
 % end
-road = Element(road_a(ii),0.95,[0.05;0.05;0.05;0.05;0.05;0.05;0.05;0.05;0.05;0.05],...
-    [asphalt;asphalt;asphalt;asphalt;stones;stones;stones;stones;soil;soil],0.0,293.,1);
-% road = Element(0.1,0.95,[0.2;0.2],...
-%    [asphalt;stones],0.0,293.,1);
-rural = Element(0.15,0.96,[0.05;0.1;0.1;0.5;0.5],...
-    [stones;stones;soil;soil;soil],0.8,293.,1);
-mass = Element(0.7,0.9,[0.05;0.05],[concrete;concrete],0.,293.,0);
+road = Element(road_a(ii),0.95,[0.05;0.05;0.05;0.05;0.05;0.05;0.1;0.2;0.1;0.1],...
+       [asphalt;asphalt;asphalt;asphalt;stones;stones;stones;stones;soil;soil],0.0,295.,1);
+% road = Element(0.1,0.95,[0.07;0.2;0.1;0.2],...
+%    [asphalt;stones;soil;soil],0.0,295.,1);
+rural = Element(0.15,0.9,[0.05;0.1;0.1;0.5;0.5],...
+    [stones;stones;soil;soil;soil],0.8,295.,1);
+mass = Element(0.3,0.9,[0.05;0.05],[concrete;concrete],0.,295.,0);
 
 % Building definitions
 % Residential building with AC
@@ -71,7 +71,7 @@ res_wAC = Building(3.0,... % floorHeight
     0.5,...               % Infiltration (ACH)
     0.0,...               % Ventilation (ACH)
     0.3,...               % glazing ratio
-    2.715,...             % window U-value (W m-2 K)
+    0.6,...             % window U-value (W m-2 K)
     0.75,...              % window solar heat gain coefficient
     'AIR',...             % cooling condensation system type {'AIR','WATER'}
     2.5,...               % COP of the cooling system
@@ -82,7 +82,7 @@ res_wAC = Building(3.0,... % floorHeight
     293.,...              % nighttime indoor heating set-point (K)
     225.,...              % rated cooling system capacity (W m-2 bld)
     0.9,...               % heating system efficiency (-)
-    300.);                % intial indoor temp (K)
+    297.);                % intial indoor temp (K)
 
 % Residential building without AC
 residential = Building(3.0,... % floorHeight
@@ -93,7 +93,7 @@ residential = Building(3.0,... % floorHeight
     0.5,...               % Infiltration (ACH)
     0.0,...               % Ventilation (ACH)
     0.3,...               % glazing ratio
-    2.715,...             % window U-value (W m-2 K)
+    0.6,...             % window U-value (W m-2 K)
     0.75,...              % window solar heat gain coefficient
     'AIR',...             % cooling condensation system type {'AIR','WATER'}
     2.5,...               % COP of the cooling system
@@ -107,23 +107,23 @@ residential = Building(3.0,... % floorHeight
     300.);                % intial indoor temp (K)
 
 % Commercial building
-commercial = Building(4.6,... % floorHeight
+commercial = Building(4,... % floorHeight
     0.0,...              % nighttime internal heat gains (W m-2 floor)
-    25.0,...              % daytime internal heat gains (W m-2 floor)
+    31.2,...              % daytime internal heat gains (W m-2 floor)
     0.5,...               % radiant fraction of internal gains
     0.1,...               % latent fraction of internal gains
     0.1,...               % Infiltration (ACH)
-    0.4,...               % Ventilation (ACH)
-    0.3,...               % glazing ratio
-    2.715,...             % window U-value (W m-2 K)
-    0.75,...              % window solar heat gain coefficient
+    0.45,...               % Ventilation (ACH)
+    0.47,...               % glazing ratio
+    1.25,...               % window U-value (W m-2 K) (Range: 1-7)
+    0.22,...              % window solar heat gain coefficient
     'AIR',...             % cooling condensation system type {'AIR','WATER'}
-    2.5,...               % COP of the cooling system
+    2.9,...               % COP of the cooling system
     0.0,...               % fraction of waste heat released into the canyon
-    297.,...              % daytime indoor cooling set-point (K)
-    300.,...              % nighttime indoor cooling set-point (K)
-    295.,...              % daytime indoor heating set-point (K)
-    293.,...              % nighttime indoor heating set-point (K)
+    298.75,...              % daytime indoor cooling set-point (K)
+    298.75,...              % nighttime indoor cooling set-point (K)
+    294.25,...              % daytime indoor heating set-point (K)
+    294.25,...              % nighttime indoor heating set-point (K)
     335.,...              % rated cooling system capacity (W m-2 bld)
-    0.9,...               % heating system efficiency (-)
-    293.);                % intial indoor temp (K)
+    1,...               % heating system efficiency (-)
+    295);                % intial indoor temp (K)
