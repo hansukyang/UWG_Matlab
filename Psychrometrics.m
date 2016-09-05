@@ -1,6 +1,6 @@
 function [Tdb, w, phi, h, Tdp, v] = Psychrometrics (Tdb_in, w_in, P)
     % Modified version of Psychometrics by Tea Zakula
-    % November 16, 2012
+    % November 16, 2012 
     % Massachusetts Institute of Technology Building Technology Lab
     % VARIABLES (2 needed as input)
     % Tdb (dry bulb temperature) and Tdp(dew point temperature) in C
