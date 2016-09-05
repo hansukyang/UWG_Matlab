@@ -1,4 +1,4 @@
-function qsat = qsat(temp,pres,parameter)
+function qsat = qsat(temp,pres,parameter) 
 
 gamw = (parameter.cl - parameter.cpv) / parameter.rv;
 betaw = (parameter.lvtt/parameter.rv) + (gamw * parameter.tt);
