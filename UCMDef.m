@@ -178,7 +178,7 @@ classdef UCMDef
                 
                 obj.wallTemp = obj.wallTemp + BEM(j).frac*T_wall;
                 obj.roofTemp = obj.roofTemp + BEM(j).frac*BEM(j).roof.layerTemp(1);
-                obj.Q_ubl = obj.Q_ubl + BEM(j).frac*(BEM(j).roof.sens*obj.bldDensity+building.sensWaste*(1-obj.h_mix));
+                obj.Q_ubl = obj.Q_ubl + BEM(j).frac*obj.bldDensity*(BEM(j).roof.sens + BEM(j).building.sensWaste*(1-obj.h_mix)); % Changed by Jiachen Mao in March 2017
                     
             end
                 
@@ -197,7 +197,8 @@ classdef UCMDef
                 V_vent = BEM(j).building.vent*BEM(j).building.nFloor; % ventilation volume per m^2 of building
                 V_infil = BEM(j).building.infil*obj.bldHeight/3600;
                 T_indoor = BEM(j).building.indoorTemp;
-                R_glazing= building.glazingRatio;
+                U_window = BEM(j).building.uValue;      % Added by Jiachen Mao in March 2017
+                R_glazing= BEM(j).building.glazingRatio;        % Changed by Jiachen Mao in March 2017
                 
                 obj.Q_window = obj.Q_window + BEM(j).frac*obj.verToHor*R_glazing*U_window*(T_indoor-T_can);
                 obj.Q_window = obj.Q_window + BEM(j).frac*obj.verToHor*R_glazing*BEM(j).wall.solRec*(1-BEM(j).building.shgc);
